@@ -82,6 +82,7 @@ public class UploadQueueHelpme_Activity extends Activity {
 	private Camera camera;
 	private MediaScannerConnection mScanner;
 	private OKHttp okHttp;
+	private Context mContext;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -95,6 +96,7 @@ public class UploadQueueHelpme_Activity extends Activity {
 		okHttp = new OKHttp();
 		appStatus = ApplicationStatus.getInstance();
 		appStatus.onCreate();
+		mContext = this;
 
 		Intent intent = getIntent();
 		id = mManager.getID().toString();
@@ -166,8 +168,20 @@ public class UploadQueueHelpme_Activity extends Activity {
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				isCancel = true;
-				finish();
+				builder = new AlertDialog.Builder(mContext);
+				builder.setTitle("HelpMe");
+				builder.setMessage("ต้องการยกเลิกการทำงาน ? ");
+				builder.setNegativeButton("ใช่",
+						new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								isCancel = true;
+								finish();
+							}
+						});
+				builder.setPositiveButton("ไม่ใช่", null);
+				setColorDialog();
 			}
 		});
 
@@ -475,9 +489,18 @@ public class UploadQueueHelpme_Activity extends Activity {
 		super.onBackPressed();
 	}
 
-	@Subscribe
-	public void dataRecived(String output) {
-		Log.i("Out put", output);
+	public void setColorDialog() {
+		Dialog d = builder.show();
+		int dividerId = d.getContext().getResources()
+				.getIdentifier("android:id/titleDivider", null, null);
+		View divider = d.findViewById(dividerId);
+		divider.setBackgroundColor(this.getResources().getColor(
+				R.color.default_pink));
+
+		int textViewId = d.getContext().getResources()
+				.getIdentifier("android:id/alertTitle", null, null);
+		TextView tv = (TextView) d.findViewById(textViewId);
+		tv.setTextColor(this.getResources().getColor(R.color.default_pink));
 	}
 
 }

@@ -211,7 +211,7 @@ public class Setting_Fragment extends Fragment {
 			for (int i = 0; i < data.length(); i++) {
 				JSONObject c2 = data.getJSONObject(i);
 				Car car = new Car();
-				car.setCarid(c2.getString("car_id"));
+				car.setCarid(c2.getString("car_id")); Log.i("car_id", c2.getString("car_id"));
 				car.setCarpolicy(c2.getString("car_policy"));
 				car.setCartype(c2.getString("cartype_name"));
 				car.setcarband(c2.getString("car_brand"));

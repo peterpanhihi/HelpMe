@@ -140,7 +140,8 @@ public class ApplicationStatus {
 	}
 
 	public boolean isOpenGPS(Activity activity) {
-		LocationManager manager = (LocationManager) activity.getSystemService(Context.LOCATION_SERVICE);
+		LocationManager manager = (LocationManager) activity
+				.getSystemService(Context.LOCATION_SERVICE);
 		return manager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 	}
 
@@ -148,34 +149,37 @@ public class ApplicationStatus {
 	 * 
 	 */
 	public void checkLocation(final Activity activity) {
-		if(!isOpenGPS(activity))
-		if (!showLocation) {
-			showLocation = true;
-			builder = new AlertDialog.Builder(activity);
-			builder.setTitle("HelpMe");
-			builder.setMessage("Please open GPS");
-			builder.setNegativeButton("Setting",
-					new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							showLocation = false;
-							Intent i = new Intent(
-									Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-							activity.startActivity(i);
-							isSetLocation = true;
-						}
-					});
-			builder.setPositiveButton("Close",
-					new DialogInterface.OnClickListener() {
+		if (activity != null)
+			if (!isOpenGPS(activity))
+				if (!showLocation) {
+					showLocation = true;
+					builder = new AlertDialog.Builder(activity);
+					builder.setTitle("HelpMe");
+					builder.setMessage("Please open GPS");
+					builder.setNegativeButton("Setting",
+							new DialogInterface.OnClickListener() {
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+									showLocation = false;
+									Intent i = new Intent(
+											Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+									activity.startActivity(i);
+									isSetLocation = true;
+								}
+							});
+					builder.setPositiveButton("Close",
+							new DialogInterface.OnClickListener() {
 
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							showLocation = false;
-							isSetLocation = false;
-						}
-					});
-			setColorDialog(activity);
-		}
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+									showLocation = false;
+									isSetLocation = false;
+								}
+							});
+					setColorDialog(activity);
+				}
 	}
 
 	public boolean isOnline(Activity activity) {

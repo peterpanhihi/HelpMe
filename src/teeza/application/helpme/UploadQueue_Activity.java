@@ -29,6 +29,7 @@ import teeza.application.helpme.model.QueueItem;
 import teeza.application.helpme.persistence.UserManager;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -46,6 +47,7 @@ import android.os.Environment;
 import android.os.StrictMode;
 import android.os.Vibrator;
 import android.os.AsyncTask.Status;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
@@ -225,10 +227,21 @@ public class UploadQueue_Activity extends GMap_Activity {
 
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent();
-				intent.putExtra("result", "true");
-				setResult(RESULT_OK, intent);
-				finish();
+				builder = new AlertDialog.Builder(mContext);
+				builder.setTitle("HelpMe");
+				builder.setMessage("ต้องการยกเลิกการทำงาน ? ");
+				builder.setNegativeButton("ใช่",
+						new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								Intent intent = new Intent();
+								intent.putExtra("result", "true");
+								setResult(RESULT_OK, intent);
+								finish();
+							}
+						});
+				builder.setPositiveButton("ไม่ใช่",null);
+				setColorDialog();
 			}
 		});
 
@@ -346,7 +359,7 @@ public class UploadQueue_Activity extends GMap_Activity {
 						} else {
 							send();
 							showDialog(PROGRESSDIALOG_ID);
-							setUpColorDialog();
+							setUpColorProgressDialog();
 						}
 
 					}
@@ -759,8 +772,22 @@ public class UploadQueue_Activity extends GMap_Activity {
 		}
 		return super.onKeyDown(keyCode, event);
 	}
+	
+	public void setColorDialog() {
+		Dialog d = builder.show();
+		int dividerId = d.getContext().getResources()
+				.getIdentifier("android:id/titleDivider", null, null);
+		View divider = d.findViewById(dividerId);
+		divider.setBackgroundColor(this.getResources().getColor(
+				R.color.default_pink));
 
-	public void setUpColorDialog() {
+		int textViewId = d.getContext().getResources()
+				.getIdentifier("android:id/alertTitle", null, null);
+		TextView tv = (TextView) d.findViewById(textViewId);
+		tv.setTextColor(this.getResources().getColor(R.color.default_pink));
+	}
+
+	public void setUpColorProgressDialog() {
 		int dividerId = progressDialog.getContext().getResources()
 				.getIdentifier("android:id/titleDivider", null, null);
 		View divider = progressDialog.findViewById(dividerId);
