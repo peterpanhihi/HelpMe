@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="10"
+    android:orientation="vertical" 
+    android:background="#ffffff"
+    >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_weight="9"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:weightSum="2" >
+
+                <teeza.application.helpme.custom_view.CustomText
+	                android:fontFamily="DBHelvethaicaX.ttf"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:textColor="#000000"
+                    android:text="ชื่อ-สกุล :"
+                    android:textSize="20sp" />
+
+                <teeza.application.helpme.custom_view.CustomText
+	                android:fontFamily="DBHelvethaicaX.ttf"
+                    android:id="@+id/name"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textColor="#777777"
+                    android:gravity="left"
+                    android:text="พีระพล  วงศ์ประไพ"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="#cccccc"
+                android:orientation="vertical" >
+
+            </LinearLayout>
+
+			 <LinearLayout
+			     android:layout_width="match_parent"
+			     android:layout_height="match_parent"
+			     android:layout_margin="10dp"
+			     android:weightSum="2" >
+
+                <teeza.application.helpme.custom_view.CustomText
+	                android:fontFamily="DBHelvethaicaX.ttf"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="เบอร์โทร :"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+                <teeza.application.helpme.custom_view.CustomText
+	                android:fontFamily="DBHelvethaicaX.ttf"
+                    android:id="@+id/phone"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="090-09090909"
+                    android:textColor="#777777"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+			 <LinearLayout
+			     android:layout_width="match_parent"
+			     android:layout_height="1dp"
+			     android:layout_marginLeft="20dp"
+			     android:layout_marginRight="20dp"
+			     android:background="#cccccc"
+			     android:orientation="vertical" >
+			 </LinearLayout>
+
+             <LinearLayout
+			     android:layout_width="match_parent"
+			     android:layout_height="match_parent"
+			     android:layout_margin="10dp"
+			     android:weightSum="2" >
+
+                <teeza.application.helpme.custom_view.CustomText
+	                android:fontFamily="DBHelvethaicaX.ttf"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="left"
+                    android:textColor="#000000"
+                    android:text="ที่อยู่ :"
+                    android:textSize="20sp" />
+
+                <teeza.application.helpme.custom_view.CustomText
+	                android:fontFamily="DBHelvethaicaX.ttf"
+                    android:id="@+id/address"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="LPN 333 MFEC"
+                    android:textColor="#777777"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+            <LinearLayout
+			     android:layout_width="match_parent"
+			     android:layout_height="match_parent"
+			     android:layout_margin="10dp">
+            </LinearLayout>
+            
+			<LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:weightSum="2" >
+
+                <teeza.application.helpme.custom_view.CustomText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:fontFamily="DBHelvethaicaX.ttf"
+                    android:gravity="left|center_vertical"
+                    android:text="ความละเอียดภาพ :"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+                <Spinner
+                    android:id="@+id/imageid"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_dropdown_border"
+                    android:entries="@array/image_size_arrays"
+                    android:textColor="#777777"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:weightSum="2" >
+
+                <teeza.application.helpme.custom_view.CustomText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:fontFamily="DBHelvethaicaX.ttf"
+                    android:gravity="left|center_vertical"
+                    android:text="ทะเบียนรถ :"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+                <Spinner
+                    android:id="@+id/carid"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_dropdown_border"
+                    android:textColor="#777777"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+			
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="#cccccc"
+                android:orientation="vertical" >
+
+            </LinearLayout>
+
+             <LinearLayout
+			     android:layout_width="match_parent"
+			     android:layout_height="match_parent"
+			     android:layout_margin="10dp"
+			     android:weightSum="2" >
+
+                <teeza.application.helpme.custom_view.CustomText
+	                android:fontFamily="DBHelvethaicaX.ttf"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#000000"
+                    android:gravity="left"
+                    android:text="เลขกรมธรรม์ :"
+                    android:textSize="20sp" />
+
+                <teeza.application.helpme.custom_view.CustomText
+	                android:fontFamily="DBHelvethaicaX.ttf"
+                    android:id="@+id/carpolicy"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="กรมธรรม์"
+                    android:textColor="#777777"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="#cccccc"
+                android:orientation="vertical" >
+
+            </LinearLayout>
+
+             <LinearLayout
+			     android:layout_width="match_parent"
+			     android:layout_height="match_parent"
+			     android:layout_margin="10dp"
+			     android:weightSum="2" >
+
+                <teeza.application.helpme.custom_view.CustomText
+	                android:fontFamily="DBHelvethaicaX.ttf"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#000000"
+                    android:gravity="left"
+                    android:text="ประเภทรถ :"
+                    android:textSize="20sp" />
+
+                <teeza.application.helpme.custom_view.CustomText
+	                android:fontFamily="DBHelvethaicaX.ttf"
+                    android:id="@+id/cartype"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="รถยนต์ส่วนบุคคล"
+                    android:textColor="#777777"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="1dp"
+                 android:layout_marginLeft="20dp"
+                 android:layout_marginRight="20dp"
+                 android:background="#cccccc"
+                 android:orientation="vertical" >
+
+             </LinearLayout>
+
+             <LinearLayout
+			     android:layout_width="match_parent"
+			     android:layout_height="match_parent"
+			     android:layout_margin="10dp"
+			     android:weightSum="2" >
+
+                <teeza.application.helpme.custom_view.CustomText
+	                android:fontFamily="DBHelvethaicaX.ttf"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="left"
+                    android:textColor="#000000"
+                    android:text="ยี่ห้อรถ :"
+                    android:textSize="20sp" />
+
+                <teeza.application.helpme.custom_view.CustomText
+	                android:fontFamily="DBHelvethaicaX.ttf"
+                    android:id="@+id/carbrand"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:textColor="#777777"
+                    android:text="นิสสัน"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="1dp"
+                 android:layout_marginLeft="20dp"
+                 android:layout_marginRight="20dp"
+                 android:background="#cccccc"
+                 android:orientation="vertical" >
+
+             </LinearLayout>
+
+             <LinearLayout
+			     android:layout_width="match_parent"
+			     android:layout_height="match_parent"
+			     android:layout_margin="10dp"
+			     android:weightSum="2" >
+
+                <teeza.application.helpme.custom_view.CustomText
+	                android:fontFamily="DBHelvethaicaX.ttf"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="left"
+                    android:text="รุ่นรถ :"
+                    android:textSize="20sp" />
+
+                <teeza.application.helpme.custom_view.CustomText
+	                android:fontFamily="DBHelvethaicaX.ttf"
+                    android:id="@+id/carseries"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="อัลมิร่า"
+                    android:textColor="#777777"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="1dp"
+                 android:layout_marginLeft="20dp"
+                 android:layout_marginRight="20dp"
+                 android:background="#cccccc"
+                 android:orientation="vertical" >
+             </LinearLayout>
+
+             <LinearLayout
+			     android:layout_width="match_parent"
+			     android:layout_height="match_parent"
+			     android:layout_margin="10dp"
+			     android:weightSum="2" >
+
+                <teeza.application.helpme.custom_view.CustomText
+	                android:fontFamily="DBHelvethaicaX.ttf"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="left"
+                    android:textColor="#000000"
+                    android:text="จังหวัด :"
+                    android:textSize="20sp" />
+
+                <teeza.application.helpme.custom_view.CustomText
+	                android:fontFamily="DBHelvethaicaX.ttf"
+                    android:id="@+id/carcity"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="กรุงเทพมหานคร"
+                    android:textColor="#777777"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/changepass"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:background="#ededed"
+                android:gravity="center_vertical"
+                android:weightSum="5" >
+
+                <teeza.application.helpme.custom_view.CustomText
+	                android:fontFamily="DBHelvethaicaX.ttf"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:gravity="left|center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:text="ตั้งรหัสผ่าน"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/iconarrow"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/arrow" />
+
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/changepin"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:background="#ededed"
+                android:gravity="center_vertical"
+                android:weightSum="5" >
+
+                <teeza.application.helpme.custom_view.CustomText
+	                android:fontFamily="DBHelvethaicaX.ttf"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:gravity="left|center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:text="ตั้งรหัสPIN"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/iconarrow"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/arrow" />
+
+            </LinearLayout>
+        </LinearLayout>
+   </ScrollView>
+
+    <RelativeLayout
+        android:layout_weight="1"
+		android:layout_width="match_parent"
+        android:layout_height="0dp" 
+        android:layout_alignParentBottom="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="3" >
+
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#e30053"
+                android:textColor="#ffffff"
+                android:text="บันทึก" />
+              <Button
+                android:id="@+id/cancel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:textColor="#ffffff"
+                android:background="#717171"
+                android:text="ยกเลิก" />
+           
+            
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

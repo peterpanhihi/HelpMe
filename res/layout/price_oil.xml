@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/LinearLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="#e30053"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/picplace"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="7dp"
+            android:src="@drawable/header_oilprice" />
+
+        <teeza.application.helpme.custom_view.CustomText
+            android:fontFamily="DBHelvethaicaX.ttf"
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="13dp"
+            android:layout_toRightOf="@+id/picplace"
+            android:text="ราคาน้ำมันวันนี้"
+            android:textColor="#ffffff"
+            android:textSize="28sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/LinearLayout01"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="10"
+        android:orientation="vertical" >
+
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:weightSum="2" >
+
+                        <teeza.application.helpme.custom_view.CustomText
+                            android:id="@+id/TextView02"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="DBHelvethaicaX.ttf"
+                            android:text="น้ำมัน"
+                            android:textColor="#e30053"
+                            android:textSize="24sp" />
+
+                        <teeza.application.helpme.custom_view.CustomText
+                            android:id="@+id/TextView01"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="DBHelvethaicaX.ttf"
+                            android:gravity="right"
+                            android:textColor="#999999"
+                            android:text="บาท / ลิตร"
+                            android:textSize="24sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#e30053"
+                    android:orientation="vertical" >
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:weightSum="2" >
+
+                        <teeza.application.helpme.custom_view.CustomText
+                            android:id="@+id/textView1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:fontFamily="DBHelvethaicaX.ttf"
+                            android:gravity="center_vertical"
+                            android:text="เบนซิน 95"
+                            android:textColor="#dfba24"
+                            android:textSize="24sp" />
+
+                        <teeza.application.helpme.custom_view.CustomText
+                            android:id="@+id/price95"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:fontFamily="DBHelvethaicaX.ttf"
+                            android:gravity="right|center_vertical"
+                            android:text="-"
+                            android:textColor="#dfba24"
+                            android:textSize="36sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ededed"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:weightSum="2" >
+
+                        <teeza.application.helpme.custom_view.CustomText
+                            android:id="@+id/TextView03"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:fontFamily="DBHelvethaicaX.ttf"
+                            android:gravity="center_vertical"
+                            android:text="แก๊สโซฮอล์ 95"
+                            android:textColor="#db9228"
+                            android:textSize="24sp" />
+
+                        <teeza.application.helpme.custom_view.CustomText
+                            android:id="@+id/priceso95"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:fontFamily="DBHelvethaicaX.ttf"
+                            android:gravity="right|center_vertical"
+                            android:text="-"
+                            android:textColor="#db9228"
+                            android:textSize="36sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:weightSum="2" >
+
+                        <teeza.application.helpme.custom_view.CustomText
+                            android:id="@+id/TextView05"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:fontFamily="DBHelvethaicaX.ttf"
+                            android:text="แก๊สโซฮอล์ 91"
+                            android:textColor="#087d45"
+                            android:gravity="center_vertical"
+                            android:textSize="24sp" />
+
+                        <teeza.application.helpme.custom_view.CustomText
+                            android:id="@+id/priceso91"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:fontFamily="DBHelvethaicaX.ttf"
+                            android:gravity="right|center_vertical"
+                            android:text="-"
+                            android:textColor="#087d45"
+                            android:textSize="36sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ededed"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:weightSum="2" >
+
+                        <teeza.application.helpme.custom_view.CustomText
+                            android:id="@+id/TextView06"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:fontFamily="DBHelvethaicaX.ttf"
+                            android:text="แก๊สโซฮอล์ E20"
+                            android:gravity="center_vertical"
+                            android:textColor="#8abb3c"
+                            android:textSize="24sp" />
+
+                        <teeza.application.helpme.custom_view.CustomText
+                            android:id="@+id/pricee20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:fontFamily="DBHelvethaicaX.ttf"
+                            android:gravity="right|center_vertical"
+                            android:text="-"
+                            android:textColor="#8abb3c"
+                            android:textSize="36sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:weightSum="2" >
+
+                        <teeza.application.helpme.custom_view.CustomText
+                            android:id="@+id/TextView04"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:fontFamily="DBHelvethaicaX.ttf"
+                            android:text="แก๊สโซฮอล์ E85"
+                            android:textColor="#ab2086"
+                            android:gravity="center_vertical"
+                            android:textSize="24sp" />
+
+                        <teeza.application.helpme.custom_view.CustomText
+                            android:id="@+id/pricee85"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:fontFamily="DBHelvethaicaX.ttf"
+                           	android:gravity="right|center_vertical"
+                            android:text="-"
+                            android:textColor="#ab2086"
+                            android:textSize="36sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ededed"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:weightSum="2" >
+
+                        <teeza.application.helpme.custom_view.CustomText
+                            android:id="@+id/TextView07"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:fontFamily="DBHelvethaicaX.ttf"
+                            android:text="ดีเซล"
+                            android:textColor="#29a9e1"
+                            android:gravity="center_vertical"
+                            android:textSize="24sp" />
+
+                        <teeza.application.helpme.custom_view.CustomText
+                            android:id="@+id/pricede"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:fontFamily="DBHelvethaicaX.ttf"
+                            android:gravity="right|center_vertical"
+                            android:text="-"
+                            android:textColor="#29a9e1"
+                            android:textSize="36sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="#717171"
+        android:text="ย้อนกลับ"
+        android:textColor="#ffffff" />
+
+</RelativeLayout>

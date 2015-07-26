@@ -1,0 +1,149 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#e30053"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <teeza.application.helpme.custom_view.CustomText
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_weight="98.68"
+        android:fontFamily="DBHelvethaicaX.ttf"
+        android:gravity="center"
+        android:text="PIN  HelpME!"
+        android:textColor="#ffffff"
+        android:textSize="28sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1051.95"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="304dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1075.38"
+            android:gravity="center" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="#60ffffff" >
+
+                <teeza.application.helpme.custom_view.CustomEdittext
+                    android:id="@+id/CustomEdittext04"
+                    android:layout_width="62dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.86"
+                    android:background="#00ffffff"
+                    android:ems="10"
+                    android:fontFamily="DBHelvethaicaX.ttf"
+                    android:gravity="center"
+                    android:inputType="numberPassword"
+                    android:hint="X"
+                    android:selectAllOnFocus="true"
+                    android:textColorHint="#ffffff"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="#60ffffff" >
+
+                <teeza.application.helpme.custom_view.CustomEdittext
+                    android:id="@+id/CustomEdittext02"
+                    android:layout_width="62dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1.71"
+                    android:background="#00ffffff"
+                    android:ems="10"
+                    android:fontFamily="DBHelvethaicaX.ttf"
+                    android:gravity="center"
+                    android:hint="X"
+                    android:inputType="numberPassword"
+                    android:selectAllOnFocus="true"
+                    android:textColorHint="#ffffff"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="#60ffffff" >
+
+                <teeza.application.helpme.custom_view.CustomEdittext
+                    android:id="@+id/CustomEdittext01"
+                    android:layout_width="62dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="5"
+                    android:background="#00ffffff"
+                    android:ems="10"
+                    android:fontFamily="DBHelvethaicaX.ttf"
+                    android:gravity="center"
+                    android:hint="X"
+                    android:inputType="numberPassword"
+                    android:selectAllOnFocus="true"
+                    android:textColorHint="#ffffff"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="#60ffffff" >
+
+                <teeza.application.helpme.custom_view.CustomEdittext
+                    android:id="@+id/CustomEdittext03"
+                    android:layout_width="66dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:background="#00ffffff"
+                    android:ems="10"
+                    android:fontFamily="DBHelvethaicaX.ttf"
+                    android:gravity="center"
+                    android:hint="X"
+                    android:inputType="numberPassword"
+                    android:selectAllOnFocus="true"
+                    android:textColorHint="#ffffff"
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2292.51"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="9273.56"
+            android:gravity="center"
+            android:orientation="vertical" >
+            
+            <android.inputmethodservice.KeyboardView
+			    android:id="@+id/keyboard"
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:focusable="true"
+			    android:focusableInTouchMode="true"
+			    android:layout_alignParentBottom="true"/>
+            
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

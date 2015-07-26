@@ -1,0 +1,148 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/RelativeLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#e30053"
+    android:gravity="center"
+    tools:ignore="TextFields,ObsoleteLayoutParam,RtlHardcoded" >
+
+    <teeza.application.helpme.custom_view.CustomText
+	    android:fontFamily="DBHelvethaicaX.ttf"
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/picplace"
+        android:layout_centerHorizontal="true"
+        android:text="เข้าสู่ระบบ  HelpME!"
+		android:textSize="28sp"
+        android:textColor="#ffffff" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/textView2"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="15dp"
+        android:background="#60ffffff"
+        android:gravity="center_horizontal" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/imageView3"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="31dp"
+            android:text=" |"
+            android:textColor="#60ffffff"
+            android:textSize="24sp" />
+
+        <teeza.application.helpme.custom_view.CustomEdittext
+	        android:fontFamily="DBHelvethaicaX.ttf"
+            android:id="@+id/txtUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/textView1"
+            android:background="#00ffffff"
+            android:textSize="24sp"
+            android:ems="10"
+            android:hint="อีเมล์"
+            android:inputType="textEmailAddress"
+            android:selectAllOnFocus="true"
+            android:textColorHint="#ffffff" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="7dp"
+            android:src="@drawable/icon_user" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout2"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/relativeLayout1"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="15dp"
+        android:background="#60ffffff" >
+
+        <TextView
+            android:id="@+id/TextView01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/ImageView01"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="31dp"
+            android:text=" |"
+            android:textColor="#60ffffff"
+            android:textSize="24sp" />
+
+        <teeza.application.helpme.custom_view.CustomEdittext
+	        android:fontFamily="DBHelvethaicaX.ttf"
+            android:id="@+id/txtPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/TextView01"
+            android:background="#00ffffff"
+            android:textSize="24sp"
+            android:ems="10"
+            android:hint="รหัสผ่าน"
+            android:inputType="textPassword"
+            android:textColorHint="#ffffff" />
+
+        <ImageView
+            android:id="@+id/ImageView01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="7dp"
+            android:src="@drawable/icon_password" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/RelativeLayout2"
+        android:layout_marginTop="15dp" 
+        android:background="#ffffff">
+
+        <teeza.application.helpme.custom_view.CustomText
+	        android:fontFamily="DBHelvethaicaX.ttf"
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="เข้าสู่ระบบ"
+            android:textSize="28sp"
+            android:textColor="#e30053" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/picplace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/logo_helpme_login" />
+
+</RelativeLayout>

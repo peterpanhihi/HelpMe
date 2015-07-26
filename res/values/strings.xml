@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">HelpMe!</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="drawer_open">Slider Menu Opened</string>
+    <string name="drawer_close">Slider Menu Closed</string>
+    <string name="CanceledMessage">Canceled</string>
+    <string name="internal_exception_message">Internal error occurred</string>
+    <string name="security_exception_message">Security error occurred</string>
+    <string name="exception_message">Server error, try later</string>
+    <string name="autocomplete_hint">Enter place name or address</string>
+    <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item>HelpMe</item>
+        <item>เคลมย้อนหลัง</item>
+        <item>การเดินทาง การจราจร</item>
+        <item>สถานที่ไกล้เคียง</item>
+        <item>เช็คเบี้ยประกัน</item>
+        <item>เบอร์ฉุกเฉิน</item>
+        <item>ตั้งค่า</item>
+        <item>ออกจากระบบ</item>
+    </string-array>
+    <string-array name="image_size_arrays">
+        <item>40 KB</item>
+        <item>100 KB</item>
+        <item>150 KB</item>
+    </string-array>
+
+    <!-- Nav Drawer List Item Icons -->
+    <!-- Keep them in order as the titles are in -->
+    <array name="nav_drawer_icons">
+        <item>@drawable/menu_1_helpme</item>
+        <item>@drawable/menu_2_claim</item>
+        <item>@drawable/menu_3_traffic</item>
+        <item>@drawable/menu_4_places</item>
+        <item>@drawable/menu_5_insurance</item>
+        <item>@drawable/menu_6_call</item>
+        <item>@drawable/menu_7_setting</item>
+        <item>@drawable/menu_8_logout</item>
+    </array>
+
+    <!-- Content Description -->
+    <string name="desc_list_item_icon">Item Icon</string>
+    <string name="sendbot">ส่ง</string>
+    <string name="detail">โปรดใส่รายละเอียด</string>
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="select">Select</string>
+    <string name="take">Take Photo</string>
+    <string name="selectf">Select From Gallery</string>
+    <string name="btn_ok">Select</string>
+    <string name="selectfrom">Select From Gallery</string>
+    <string name="add">เพิ่ม</string>
+    <string name="searchgps"></string>
+    <string name="startgps">จุดเริ่มต้น</string>
+    <string name="endgps">จุดหมาย</string>
+    <string name="CheckBox11"></string>
+
+    <!-- FONT FAIIMLY FOR Project -->
+    <declare-styleable name="customfont">
+        <attr name="android:fontFamily" />
+        <attr name="android:textStyle" />
+    </declare-styleable>
+
+    <string name="title_activity_about_app">เกี่ยวกับแอพพลิเคชั่น</string>
+    <string name="title_activity_about_application">AboutApplication</string>
+    <string name="title_activity_saa">Saa</string>
+    <string name="title_activity_about_application__fragment">AboutApplication_Fragment</string>
+    <string name="title_activity_abont_application">AbontApplication</string>
+    <string name="title_activity_term_and_condition">TermAndCondition</string>
+
+    <string-array name="term_and_condition">
+        <item>1. Route Search – ค้นหาเส้นทางเดินรถ คำนวนเส้นทางที่สั้นที่สุดและรถไม่ติดพร้อม traffic การจราจร</item>
+        <item>2. POI – แสดงพิกัดสถานที่ต่างๆ ช่วยให้ลูกค้าได้ข้อมูลจุดสำคัญ ไม่พลาดทุกการเดินทาง</item>
+        <item>3. Price and Promotion – ประมาณการณ์เบี้ยประกันภัยสำหรับปีหน้า</item>
+        <item>4. ระบบสั่งซื้อเบี้ยประกัน Online – กรอกข้อมูลเพื่อคำนวนเบี้ย / เปรียบเทียบ และสั่งซื้อ online ผ่าน Application</item>
+        <item>5. SMS แจ้งเตือน รถใกล้หลุดประกัน</item>
+        <item>6. Help ME! แค่คลิกก็มา - แจ้งเคลมอุบัติเหตุ ณ ที่จุดเกิดเหตุ แสดงตำแหน่งการเดินทางของเจ้าหน้าที่เคลมบนแผนที่ทันที ลูกค้ามั่นใจและสบายใจ ลดความกังวลในการรอคอย</item>
+        <item>7. E-Claim – เคลมประกันภัย online  (สำหรับการเคลมแห้ง) สะดวก ไม่ต้องโทรให้เสียเวลา</item>
+        <item>8. ระบบหลังบ้านที่มีประสิทธิภาพ</item>
+        <item>9. Securities ที่มั่นใจได้ </item>
+    </string-array>
+
+    <string name="about_app">แอพพลิเคชั่น เฮลพ์ มี (Help Me) เป็นแอพพลิเคชั่นที่บริษัทประกันภัยรถยนต์มอบให้กับลูกค้า ที่ทำประกันรถยนต์กับทางบริษัท ได้ใช้ในการแจ้งสถานที่ที่เกิดเหตุ เพื่อให้ตัวแทนประกันภัยได้รุดหน้าเข้าไปให้ความช่วยเหลือกับผู้ทำประกันภัยรถยนต์ที่เกิดอุตบัติเหตุได้อย่างทันท่วงที และมีประสิทธิภาพ โดยสามารถแจ้งจุดที่เกิดเหตุผ่านทาง แอพพลิเคชั่น เฮลพ์ มี (Help Me) ที่ติดตั้งใน Smart phone ได้โดยตรง นอกจากนั้นยังมีฟังก์ชันอื่นๆ เสริมเพิ่มเติมอีกมากมาย ไมว่าจะเป็น ฟังก์ชันการวางแผนการเดินทางที่สามารถนำผู้ใช้งานไปถึงยังเป้าหมายปลายทางได้อย่างรวดเร็วและประหยัดพลังงานมากที่สุด เพราะระยะทางที่ได้ถูกคำนวนและแสดงออกมานั้น มีระยะทางที่สั้นที่สุด และเป็นเส้นทางที่มีปริมาณความหนาแน่นทางการจราจรน้อยที่สุด ฟังก์ชั้นบอกตำแหน่งที่ตั้งของสถานีบริการน้ำมันและแก๊ส LPG และ NGV บนแผนที่ เพื่อการวางเดินทางไปใช้บริการสถานีบริการต่างๆ ได้อย่างรวดเร็วและประหยัดพลังงานมากที่สุด โดยเฉพาะในกรณ๊ที่เชื้อเพลิงที่มีอยู่เหลือน้อย ฟังก์ชันการต่ออายุประกันภัยรวมไปถึงการเช็คเบี้ยประกันภัย นอกจากนั้นยังมีฟังก์ชันอื่นอีกมากมาย อาทิเช่น รับข่าวสารโปรโมชั่นจากทางบริษัทประกันภัย ฮอทไลน์สายด่วน หมายเลขโทรศัพท์ที่เกี่ยวข้อง เป็นต้น</string>
+    <string name="title_activity_contact_us__fragment">ContactUs_Fragment</string>
+    <string name="error_config">Please set the %1$s constant and recompile the app.</string>
+    <string name="already_registered">Device is already registered on server.</string>
+    <string name="gcm_registered">GCM: device successfully registered!</string>
+    <string name="gcm_unregistered">GCM: device successfully unregistered!</string>
+    <string name="gcm_message">GCM: you got message!</string>
+    <string name="gcm_error">GCM: error (%1$s).</string>
+    <string name="gcm_recoverable_error">GCM: recoverable error (%1$s).</string>
+    <string name="gcm_deleted">GCM: server deleted %1$d pending messages!</string>
+    <string name="server_registering">Trying (attempt %1$d/%2$d) to register device on Demo Server.</string>
+    <string name="server_registered">Demo Server: successfully added device!</string>
+    <string name="server_unregistered">Demo Server: successfully removed device!</string>
+    <string name="server_register_error">Could not register device on Demo Server after %1$d attempts.</string>
+    <string name="server_unregister_error">Could not unregister device on Demo Server (%1$s).</string>
+    <string name="options_register">Register</string>
+    <string name="options_unregister">Unregister</string>
+    <string name="options_clear">Clear</string>
+    <string name="options_exit">Exit</string>
+
+</resources>

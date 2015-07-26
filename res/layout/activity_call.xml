@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum=".2" >
+
+            <LinearLayout
+                android:id="@+id/btncallL"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight=".1"
+                android:background="@drawable/btn_call_left"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <teeza.application.helpme.custom_view.CustomText
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="DBHelvethaicaX.ttf"
+                    android:text="ศูนย์ประกันภัย"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp" />
+
+                <teeza.application.helpme.custom_view.CustomText
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="DBHelvethaicaX.ttf"
+                    android:text="1736"
+                    android:textColor="#ffffff"
+                    android:textSize="40sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btncallR"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight=".1"
+                android:background="@drawable/btn_call_right"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <teeza.application.helpme.custom_view.CustomText
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="DBHelvethaicaX.ttf"
+                    android:text="สถานีตำรวจ"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp" />
+
+                <teeza.application.helpme.custom_view.CustomText
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="DBHelvethaicaX.ttf"
+                    android:text="191"
+                    android:textColor="#ffffff"
+                    android:textSize="40sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <teeza.application.helpme.custom_view.CustomText
+                android:id="@+id/TextView01"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="DBHelvethaicaX.ttf"
+                android:text="เบอร์โทรสถานที่ไกล้เคียง"
+                android:textColor="#E30053"
+                android:textSize="28sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#E30053"
+                android:orientation="vertical" >
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/relative_progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="150dp" >
+                        
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true" />
+        </RelativeLayout>
+
+        <teeza.application.helpme.custom_view.ExpandableHeightListView
+            android:id="@+id/list_callnear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:cacheColorHint="#00000000"
+            android:fadingEdge="none"
+            android:focusable="false"
+            android:scrollbars="none" >
+        </teeza.application.helpme.custom_view.ExpandableHeightListView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <teeza.application.helpme.custom_view.CustomText
+                android:id="@+id/TextView02"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="DBHelvethaicaX.ttf"
+                android:text="เบอร์โทรอื่นๆ"
+                android:textColor="#E30053"
+                android:textSize="28sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#E30053"
+                android:orientation="vertical" >
+            </LinearLayout>
+        </LinearLayout>
+
+        <teeza.application.helpme.custom_view.ExpandableHeightListView
+            android:id="@+id/list_others"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:cacheColorHint="#00000000" >
+        </teeza.application.helpme.custom_view.ExpandableHeightListView>
+    </LinearLayout>
+
+</ScrollView>

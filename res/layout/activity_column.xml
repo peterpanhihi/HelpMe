@@ -1,0 +1,98 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/eclaimlist"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/piceclaim"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_launcher" />
+
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="60dp" 
+	    android:layout_below="@+id/piceclaim"
+	    android:weightSum="4">
+
+		<LinearLayout
+		    android:id="@+id/front"
+		    android:layout_width="0dp"
+		    android:layout_height="match_parent"
+		    android:layout_weight="3"
+		    android:background="#ededed"
+		    android:orientation="vertical" >
+
+			<LinearLayout
+			    android:id="@+id/layoutdetail"
+			    android:layout_width="match_parent"
+			    android:layout_height="30dp"
+			    android:orientation="vertical" >
+
+				<teeza.application.helpme.custom_view.CustomText
+	                android:fontFamily="DBHelvethaicaX.ttf"
+				    android:id="@+id/detaileclaim"
+				    android:layout_width="match_parent"
+				    android:layout_height="match_parent"
+				    android:layout_marginLeft="10dp"
+				    android:gravity="center_vertical"
+				    android:maxLength="20"
+				    android:text="รายละเอียด"
+				    android:textColor="#e30053"
+				    android:textSize="24sp" />
+
+			</LinearLayout>
+
+			<LinearLayout
+			    android:id="@+id/layoutdate"
+			    android:layout_width="match_parent"
+			    android:layout_height="30dp"
+			    android:layout_below="@+id/layoutdetail"
+			    android:orientation="vertical" >
+
+				<teeza.application.helpme.custom_view.CustomText
+	                android:fontFamily="DBHelvethaicaX.ttf"
+				    android:id="@+id/dateeclaim"
+				    android:layout_width="match_parent"
+				    android:layout_height="match_parent"
+				    android:layout_marginLeft="10dp"
+				    android:gravity="center_vertical"
+				    android:text="วันที่"
+				    android:textColor="#999999"
+				    android:textSize="20sp" />
+
+			</LinearLayout>
+		</LinearLayout>
+
+		<RelativeLayout
+		    android:id="@+id/back"
+		    android:layout_width="0dp"
+		    android:layout_height="match_parent"
+		    android:layout_weight="1"
+		    android:background="#dddddd"
+		    android:gravity="center" >
+
+		    <teeza.application.helpme.custom_view.CustomText
+		        android:id="@+id/statuseclaim"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentTop="true"
+		        android:layout_centerHorizontal="true"
+		        android:fontFamily="DBHelvethaicaX.ttf"
+		        android:text="สถานะ"
+		        android:textColor="#999999"
+		        android:textSize="20sp" />
+
+		    <ImageView
+		        android:id="@+id/imagestatus"
+		        android:layout_width="30dp"
+		        android:layout_height="30dp"
+		        android:layout_below="@+id/statuseclaim"
+		        android:layout_centerHorizontal="true"
+		        android:src="@drawable/icon_wait_small" />
+
+		</RelativeLayout>
+	
+	</LinearLayout>
+</RelativeLayout>

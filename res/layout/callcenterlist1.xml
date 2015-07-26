@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF" >
+    
+    <teeza.application.helpme.custom_view.CustomText
+        android:id="@+id/tv_list2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:fontFamily="DBHelvethaicaX.ttf"
+        android:text="Large Text"
+        android:textColor="#000000"
+        android:textSize="24dp" />
+
+    <teeza.application.helpme.custom_view.CustomText
+        android:id="@+id/tv_list22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tv_list2"
+        android:layout_marginLeft="10dp"
+        android:fontFamily="DBHelvethaicaX.ttf"
+        android:text="TextView"
+        android:textColor="#999999"
+        android:textSize="20dp" />
+
+    <ImageView
+        android:id="@+id/imageView_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tv_list22"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="6.5dp"
+        android:src="@drawable/icon_call" />
+
+</RelativeLayout>

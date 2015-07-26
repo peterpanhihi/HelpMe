@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+	<RelativeLayout
+	    android:id="@+id/RelativeLayout01"
+	    android:layout_width="fill_parent"
+	    android:layout_height="50dp"
+	    android:background="#e30053"
+	    android:orientation="horizontal" >
+
+	    <ImageView
+	        android:id="@+id/picplace"
+	        android:layout_width="30dp"
+	        android:layout_height="30dp"
+	        android:layout_alignParentLeft="true"
+	        android:layout_centerVertical="true"
+	        android:layout_marginLeft="7dp"
+	        android:src="@drawable/menu_2_claim" />
+
+	    <teeza.application.helpme.custom_view.CustomText
+	        android:id="@+id/textView3"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_centerVertical="true"
+	        android:layout_marginLeft="13dp"
+	        android:layout_toRightOf="@+id/picplace"
+	        android:fontFamily="DBHelvethaicaX.ttf"
+	        android:text="เคลมย้อนหลัง"
+	        android:textColor="#ffffff"
+	        android:textSize="28sp" />
+	</RelativeLayout>
+ 
+	<LinearLayout
+	    android:id="@+id/LinearLayout02"
+	    android:layout_width="fill_parent"
+	    android:layout_height="match_parent" >
+ 
+				<WebView 
+                        android:id="@+id/WebView01" 
+                        android:layout_width="fill_parent"
+						android:layout_height="fill_parent">
+                </WebView>
+	</LinearLayout>
+    
+
+</LinearLayout>

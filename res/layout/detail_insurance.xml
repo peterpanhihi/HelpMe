@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/LinearLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="#e30053"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/picplace"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="7dp"
+            android:src="@drawable/menu_5_insurance" />
+
+        <teeza.application.helpme.custom_view.CustomText
+	        android:fontFamily="DBHelvethaicaX.ttf"
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="13dp"
+            android:layout_toRightOf="@+id/picplace"
+            android:text="เบี้ยประกันรถยนต์"
+            android:textColor="#ffffff"
+            android:textSize="28sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LinearLayout01"
+        android:layout_margin="10dp"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2" >
+
+                <teeza.application.helpme.custom_view.CustomText
+	                android:fontFamily="DBHelvethaicaX.ttf"
+                    android:id="@+id/classinsu"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="ประกันชั้น -"
+                    android:textSize="28sp"
+                    android:textColor="#e30053" />
+
+                <teeza.application.helpme.custom_view.CustomText
+	                android:fontFamily="DBHelvethaicaX.ttf"
+                    android:id="@+id/textView2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:textSize="28sp"
+                    android:text="บาท"
+                    android:textColor="#999999" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#e30053"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2" >
+
+                <teeza.application.helpme.custom_view.CustomText
+                    android:id="@+id/textView4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:fontFamily="DBHelvethaicaX.ttf"
+                    android:text="ทุนประกัน "
+                    android:textColor="#000000"
+                    android:textSize="36sp" />
+
+                <teeza.application.helpme.custom_view.CustomText
+                    android:id="@+id/toon"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:fontFamily="DBHelvethaicaX.ttf"
+                    android:gravity="right"
+                    android:text="-"
+                    android:textColor="#007ef4"
+                    android:textSize="36sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#ededed"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2" >
+
+                <teeza.application.helpme.custom_view.CustomText
+                    android:id="@+id/TextView02"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:fontFamily="DBHelvethaicaX.ttf"
+                    android:text="เสียหายส่วนแรก "
+                    android:textColor="#000000"
+                    android:textSize="36sp" />
+
+                <teeza.application.helpme.custom_view.CustomText
+                    android:id="@+id/first"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:fontFamily="DBHelvethaicaX.ttf"
+                    android:gravity="right"
+                    android:text="-"
+                    android:textColor="#007ef4"
+                    android:textSize="36sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:weightSum="2" >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <teeza.application.helpme.custom_view.CustomText
+	                	android:fontFamily="DBHelvethaicaX.ttf"
+                        android:id="@+id/TextView04"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="bottom"
+                        android:text="ชีวิต "
+                        android:textSize="36sp"
+                        android:textColor="#000000" />
+
+                    <teeza.application.helpme.custom_view.CustomText
+	                	android:fontFamily="DBHelvethaicaX.ttf"
+                        android:id="@+id/etc1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textSize="20sp"
+                        android:textColor="#999999"
+                        android:text="คุ้มครองบุคคลภายนอก" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <teeza.application.helpme.custom_view.CustomText
+	                	android:fontFamily="DBHelvethaicaX.ttf"
+                        android:id="@+id/life"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="right|center_vertical"
+                        android:text="-"
+                        android:textSize="36sp"
+                        android:textColor="#007ef4" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ededed"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:weightSum="2" >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <teeza.application.helpme.custom_view.CustomText
+	               		android:fontFamily="DBHelvethaicaX.ttf"
+                        android:id="@+id/TextView05"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="bottom"
+                        android:text="ทรัพย์สิน "
+                        android:textSize="36sp"
+                        android:textColor="#000000" />
+
+                    <teeza.application.helpme.custom_view.CustomText
+	                	android:fontFamily="DBHelvethaicaX.ttf"
+                        android:id="@+id/etc2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#999999"
+                        android:textSize="20sp"
+                        android:text="คุ้มครองบุคคลภายนอก" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <teeza.application.helpme.custom_view.CustomText
+	                	android:fontFamily="DBHelvethaicaX.ttf"
+                        android:id="@+id/supsin"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="right|center_vertical"
+                        android:text="-"
+                        android:textSize="36sp"
+                        android:textColor="#007ef4" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2" >
+
+                    <teeza.application.helpme.custom_view.CustomText
+                        android:id="@+id/TextView09"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:fontFamily="DBHelvethaicaX.ttf"
+                        android:text="วงเงินประกันตัว  "
+                        android:textColor="#000000"
+                        android:textSize="36sp" />
+
+                    <teeza.application.helpme.custom_view.CustomText
+                        android:id="@+id/paguntua"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:fontFamily="DBHelvethaicaX.ttf"
+                        android:gravity="right"
+                        android:text="-"
+                        android:textColor="#007ef4"
+                        android:textSize="36sp" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="#717171"
+        android:text="ย้อนกลับ"
+        android:textColor="#ffffff" />
+
+</RelativeLayout>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="10"
+    android:orientation="vertical" 
+    android:background="#ffffff"
+    >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_weight="9"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+            
+	      	<ImageView
+	      	    android:layout_gravity="center"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginTop="10dp"
+		        android:src="@drawable/logo_mfec" />
+			<LinearLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="match_parent"
+	            android:orientation="horizontal" >
+	          <LinearLayout
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
+	            android:layout_marginBottom="10dp"
+	      	    android:layout_marginLeft="10dp"
+	      	    android:layout_marginRight="10dp"
+	      	    android:layout_marginTop="10dp"
+	            android:orientation="vertical" >
+		              <teeza.application.helpme.custom_view.CustomText
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:layout_weight="1"
+		                android:textColor="#E30053"
+		                android:textSize="14dp"
+		                android:fontFamily="DBHelvethaicaX.ttf"
+		                android:layout_gravity="right"
+		                android:text="Head Office" />
+		              
+		              <teeza.application.helpme.custom_view.CustomText
+		                  android:layout_width="wrap_content"
+		                  android:layout_height="wrap_content"
+		                  android:layout_gravity="right"
+		                  android:layout_weight="1"
+		                  android:gravity="right"
+		                  android:fontFamily="DBHelvethaicaX.ttf"
+		                  android:text="699 Modernform Tower 27th Floor, Srinakarin Rd., Suanluang,Bangkok, 10250 Thailand"
+		                  android:textColor="#777777"
+		                  android:textSize="15dp" />
+
+		              <teeza.application.helpme.custom_view.CustomText
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:layout_weight="1"
+		                android:layout_gravity="right"
+		                android:textColor="#E30053"
+		                android:textSize="14dp"
+		                android:fontFamily="DBHelvethaicaX.ttf"
+		                android:text="Office Hours" />
+		              
+		              <teeza.application.helpme.custom_view.CustomText
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:layout_weight="1"
+		                android:textColor="#777777"
+		                android:layout_gravity="right"
+		                android:textSize="15dp"
+		                android:fontFamily="DBHelvethaicaX.ttf"
+		                android:text="Mon-Fri 9.00-18.00" />
+		              <teeza.application.helpme.custom_view.CustomText
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:layout_marginTop="10dp"
+		                android:layout_weight="1"
+		                android:layout_gravity="right"
+		                android:textColor="#777777"
+		                android:fontFamily="DBHelvethaicaX.ttf"
+		                android:textSize="15dp"
+		                android:text="Tel : +66 (0) 2664-5999" />
+		              <teeza.application.helpme.custom_view.CustomText
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:layout_weight="1"
+		                android:textColor="#777777"
+		                android:fontFamily="DBHelvethaicaX.ttf"
+		                android:textSize="15dp"
+		                android:layout_gravity="right"
+		                android:text="Fax : +66 (0) 2722-8388" />
+              </LinearLayout>
+			<LinearLayout
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
+	            android:layout_marginBottom="10dp"
+	      	    android:layout_marginLeft="10dp"
+	      	    android:layout_marginRight="10dp"
+	      	    android:layout_marginTop="10dp"
+	            android:orientation="vertical" >
+		              <teeza.application.helpme.custom_view.CustomText
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:layout_weight="1"
+		                android:textColor="#E30053"
+		                android:textSize="14dp"
+		                android:layout_gravity="left"
+		                android:fontFamily="DBHelvethaicaX.ttf"
+		                android:text="Development Center" />
+		              
+		              <teeza.application.helpme.custom_view.CustomText
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:layout_weight="1"
+		                android:textColor="#777777"
+		                android:fontFamily="DBHelvethaicaX.ttf"
+		                android:textSize="15dp"
+		                android:layout_gravity="left"
+		                android:text="333 Lao Peng Nguan Tower Soi Choeipuang, Vibhavadi Rangsit Rd., Chompol, Bangkok 10900 Thailand" />
+		              <teeza.application.helpme.custom_view.CustomText
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:layout_weight="1"
+		                android:textColor="#E30053"
+		                android:textSize="14dp"
+		                android:fontFamily="DBHelvethaicaX.ttf"
+		                android:layout_gravity="left"
+		                android:text="Office Hours" />
+		              
+		              <teeza.application.helpme.custom_view.CustomText
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:layout_weight="1"
+		                android:textColor="#777777"
+		                android:layout_gravity="left"
+		                android:textSize="15dp"
+		                android:fontFamily="DBHelvethaicaX.ttf"
+		                android:text="Mon-Fri 9.00-18.00" />
+		              
+		              <teeza.application.helpme.custom_view.CustomText
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:layout_marginTop="10dp"
+		                android:layout_weight="1"
+		                android:textColor="#777777"
+		                android:textSize="15dp"
+		                android:layout_gravity="left"
+		                android:fontFamily="DBHelvethaicaX.ttf"
+		                android:text="Tel : +66 (0) 2664-5999" />
+		              <teeza.application.helpme.custom_view.CustomText
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:layout_weight="1"
+		                android:textColor="#777777"
+		                android:textSize="15dp"
+		                android:layout_gravity="left"
+		                android:fontFamily="DBHelvethaicaX.ttf"
+		                android:text="Fax : +66 (0) 2278-9279" />
+              </LinearLayout>
+        </LinearLayout>
+            </LinearLayout>
+
+   </ScrollView>
+
+    <RelativeLayout
+        android:layout_weight="1"
+		android:layout_width="match_parent"
+        android:layout_height="0dp" 
+        android:layout_alignParentBottom="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="3" >
+
+              <Button
+                android:id="@+id/cancel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:textColor="#ffffff"
+                android:background="#717171"
+                android:text="ยกเลิก" />
+           
+            
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
