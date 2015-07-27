@@ -9,10 +9,14 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.provider.MediaStore;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +30,7 @@ public class QueueAdapter extends BaseAdapter {
 	private Activity activity;
 	private LayoutInflater mInflater;
 	public ArrayList<QueueItem> queueItems = new ArrayList<QueueItem>();
+	private ViewHolder holder;
 
 	public QueueAdapter(Activity activity) {
 		this.activity = activity;
@@ -91,7 +96,6 @@ public class QueueAdapter extends BaseAdapter {
 	}
 
 	public View getView(final int position, View convertView, ViewGroup parent) {
-		final ViewHolder holder;
 		if (convertView == null) {
 			convertView = mInflater.inflate(R.layout.uploadqueueitem, null);
 			holder = new ViewHolder(convertView);
@@ -99,6 +103,8 @@ public class QueueAdapter extends BaseAdapter {
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
+
+		holder.imageview.setOnClickListener(onClickDescription);
 
 		holder.imageButton.setOnClickListener(new OnClickListener() {
 
@@ -109,48 +115,7 @@ public class QueueAdapter extends BaseAdapter {
 			}
 		});
 
-		holder.description.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-				LayoutInflater li = LayoutInflater.from(activity);
-				View promptsView = li.inflate(R.layout.prompt_description, null);
-
-				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity);
-				alertDialogBuilder.setView(promptsView);
-
-				final EditText userInput = (EditText) promptsView
-						.findViewById(R.id.editTextDialogUserInput);
-
-				// set dialog message
-				alertDialogBuilder
-						.setCancelable(false)
-						.setPositiveButton("OK",
-								new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog,
-											int id) {
-										String txt = userInput.getText().toString();
-										if(!txt.equals("")) {
-											holder.description.setText(userInput.getText());
-										}
-									}
-								})
-						.setNegativeButton("Cancel",
-								new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog,
-											int id) {
-										dialog.cancel();
-									}
-								});
-
-				// create alert dialog
-				AlertDialog alertDialog = alertDialogBuilder.create();
-
-				// show it
-				alertDialog.show();
-
-			}
-		});
+		holder.description.setOnClickListener(onClickDescription);
 
 		final QueueItem item = getItem(position);
 		if (item.getBitmap() != null) {
@@ -175,6 +140,51 @@ public class QueueAdapter extends BaseAdapter {
 		return convertView;
 
 	}
+
+	private OnClickListener onClickDescription = new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+			LayoutInflater li = LayoutInflater.from(activity);
+			View promptsView = li.inflate(R.layout.prompt_description, null);
+
+			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+					activity);
+			alertDialogBuilder.setView(promptsView);
+
+			final EditText userInput = (EditText) promptsView
+					.findViewById(R.id.editTextDialogUserInput);
+
+			// set dialog message
+			alertDialogBuilder
+					.setCancelable(false)
+					.setPositiveButton("OK",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int id) {
+									String txt = userInput.getText().toString();
+									if (!txt.equals("")) {
+										holder.description.setText(userInput
+												.getText());
+									}
+								}
+							})
+					.setNegativeButton("Cancel",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int id) {
+									dialog.cancel();
+								}
+							});
+
+			// create alert dialog
+			AlertDialog alertDialog = alertDialogBuilder.create();
+
+			// show it
+			alertDialog.show();
+
+		}
+	};
 
 	class ViewHolder {
 		public ImageView imageview;

@@ -168,23 +168,25 @@ public class UploadQueueHelpme_Activity extends Activity {
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				builder = new AlertDialog.Builder(mContext);
-				builder.setTitle("HelpMe");
-				builder.setMessage("ต้องการยกเลิกการทำงาน ? ");
-				builder.setNegativeButton("ใช่",
-						new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								isCancel = true;
-								finish();
-							}
-						});
-				builder.setPositiveButton("ไม่ใช่", null);
-				setColorDialog();
+				cancelProcess();
 			}
 		});
 
+	}
+
+	public void cancelProcess() {
+		builder = new AlertDialog.Builder(mContext);
+		builder.setTitle("HelpMe");
+		builder.setMessage("ต้องการยกเลิกการทำงาน ? ");
+		builder.setNegativeButton("ใช่", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				isCancel = true;
+				finish();
+			}
+		});
+		builder.setPositiveButton("ไม่ใช่", null);
+		setColorDialog();
 	}
 
 	public void capture() {
@@ -452,14 +454,7 @@ public class UploadQueueHelpme_Activity extends Activity {
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-			Intent intent = new Intent();
-			if (uploadFlag) {
-				intent.putExtra("result", "true");
-				setResult(RESULT_OK, intent);
-			} else
-				setResult(RESULT_CANCELED, intent);
-			isCancel = true;
-			UploadQueueHelpme_Activity.this.finish();
+			cancelProcess();
 			return true;
 		}
 		return super.onKeyDown(keyCode, event);
@@ -486,6 +481,7 @@ public class UploadQueueHelpme_Activity extends Activity {
 	@Override
 	public void onBackPressed() {
 		isCancel = true;
+		cancelProcess();
 		super.onBackPressed();
 	}
 

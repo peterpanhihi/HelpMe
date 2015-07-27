@@ -97,7 +97,8 @@ public class UploadQueue_Activity extends GMap_Activity {
 	private Button back;
 	private File imageFile_new;
 
-	private StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+	private StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+			.permitAll().build();
 
 	private OKHttp okHttp;
 	private ApplicationStatus appStatus;
@@ -110,7 +111,7 @@ public class UploadQueue_Activity extends GMap_Activity {
 		id = mManager.getID().toString();
 		queueAdapter = new QueueAdapter(this);
 
-		okHttp =  new OKHttp();
+		okHttp = new OKHttp();
 		appStatus = ApplicationStatus.getInstance();
 		appStatus.onCreate();
 
@@ -133,11 +134,10 @@ public class UploadQueue_Activity extends GMap_Activity {
 		num_active.setText(sp.getString("active", " "));
 		num_policy.setText(sp.getString("num_policy", " "));
 		num_car.setText(sp.getString("num_car", " "));
-		
-		if(num_policy.getText().toString().equals("")) {
+
+		if (num_policy.getText().toString().equals("")) {
 			subject.setNextFocusDownId(R.id.num_policy);
-		}
-		else {
+		} else {
 			subject.setNextFocusDownId(R.id.name);
 		}
 		name.setNextFocusDownId(R.id.location_action);
@@ -152,7 +152,7 @@ public class UploadQueue_Activity extends GMap_Activity {
 		datepicker.setText(year + "-" + month + "-" + day);
 
 		name.setText(mManager.getuser().getname());
-		
+
 		location_action.setOnFocusChangeListener(new OnFocusChangeListener() {
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
@@ -163,7 +163,7 @@ public class UploadQueue_Activity extends GMap_Activity {
 		});
 
 		address.setText(mManager.getuser().getaddress());
-		
+
 		location_check.setOnFocusChangeListener(new OnFocusChangeListener() {
 
 			@Override
@@ -172,7 +172,7 @@ public class UploadQueue_Activity extends GMap_Activity {
 
 			}
 		});
-		
+
 		phone.setText(mManager.getuser().getphone());
 
 		datepicker.setOnClickListener(new OnClickListener() {
@@ -227,21 +227,7 @@ public class UploadQueue_Activity extends GMap_Activity {
 
 			@Override
 			public void onClick(View v) {
-				builder = new AlertDialog.Builder(mContext);
-				builder.setTitle("HelpMe");
-				builder.setMessage("ต้องการยกเลิกการทำงาน ? ");
-				builder.setNegativeButton("ใช่",
-						new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
-								Intent intent = new Intent();
-								intent.putExtra("result", "true");
-								setResult(RESULT_OK, intent);
-								finish();
-							}
-						});
-				builder.setPositiveButton("ไม่ใช่",null);
-				setColorDialog();
+				backToMain();
 			}
 		});
 
@@ -275,17 +261,16 @@ public class UploadQueue_Activity extends GMap_Activity {
 
 				// Log.e("test", car+" aa"+policy1);
 
-				RequestBody formBody = new FormEncodingBuilder() 
-				.add("num_policy", policy1)
-				.add("num_car", car)
-				.add("customer_id", id)
-				.build();
+				RequestBody formBody = new FormEncodingBuilder()
+						.add("num_policy", policy1).add("num_car", car)
+						.add("customer_id", id).build();
 				String url = Login_Activity.nameHost + "check_policy.php";
 				StrictMode.setThreadPolicy(policy);
-				
+
 				try {
 
-					JSONObject json_data = new JSONObject(okHttp.POST(url, formBody));
+					JSONObject json_data = new JSONObject(okHttp.POST(url,
+							formBody));
 					value1 = (json_data.getString("num_policy"));
 					value2 = (json_data.getString("num_car"));
 
@@ -370,21 +355,38 @@ public class UploadQueue_Activity extends GMap_Activity {
 
 			}
 		});
-		
-		location_check.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+		location_check
+				.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+					@Override
+					public boolean onEditorAction(TextView v, int actionId,
+							KeyEvent event) {
+						if (actionId == EditorInfo.IME_ACTION_DONE) {
+							location_check.clearFocus();
+							startUploadBtn.requestFocusFromTouch();
+							return true;
+						}
+						return false;
+					}
+				});
+
+		super.onCreate(savedInstanceState);
+	}
+
+	public void backToMain() {
+		builder = new AlertDialog.Builder(mContext);
+		builder.setTitle("HelpMe");
+		builder.setMessage("ต้องการยกเลิกการทำงาน ? ");
+		builder.setNegativeButton("ใช่", new DialogInterface.OnClickListener() {
 			@Override
-			public boolean onEditorAction(TextView v, int actionId,
-					KeyEvent event) {
-				if (actionId == EditorInfo.IME_ACTION_DONE) {
-					location_check.clearFocus();
-					startUploadBtn.requestFocusFromTouch();
-					return true;
-				}
-				return false;
+			public void onClick(DialogInterface dialog, int which) {
+				Intent intent = new Intent(mContext, Main_Activity.class);
+				intent.putExtra("isInPage", true);
+				startActivity(intent);
 			}
 		});
-		
-		super.onCreate(savedInstanceState);
+		builder.setPositiveButton("ไม่ใช่", null);
+		setColorDialog();
 	}
 
 	// get address
@@ -433,8 +435,6 @@ public class UploadQueue_Activity extends GMap_Activity {
 		}
 	}
 
-	
-
 	@Override
 	public void onResume() {
 		if (appStatus.checkStatus()) {
@@ -445,8 +445,6 @@ public class UploadQueue_Activity extends GMap_Activity {
 		appStatus.checkLocation(this);
 		super.onResume();
 	}
-
-	
 
 	@Override
 	protected void onPause() {
@@ -517,7 +515,7 @@ public class UploadQueue_Activity extends GMap_Activity {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
+
 		return 0;
 
 	}
@@ -712,26 +710,28 @@ public class UploadQueue_Activity extends GMap_Activity {
 
 	void send() {
 
-		RequestBody formBody = new FormEncodingBuilder() 
-		.add("customer_id", id)
-		.add("eclaim_subject", subject.getText().toString())
-		.add("eclaim_detail", detail.getText().toString())
-		.add("eclaim_notify", num_active.getText().toString())
-		.add("eclaim_policy", num_policy.getText().toString())
-		.add("car_id", num_car.getText().toString())
-		.add("eclaim_date_event",datepicker.getText().toString())
-		.add("eclaim_name", name.getText().toString())
-		.add("eclaim_location_event",location_action.getText().toString())
-		.add("eclaim_address", address.getText().toString())
-		.add("eclaim_phone", phone.getText().toString())
-		.add("eclaim_status_car",status_car.getText().toString())
-		.add("eclaim_loss", loss.getText().toString())
-		.add("eclaim_location_check",location_check.getText().toString())
-		.build();
+		RequestBody formBody = new FormEncodingBuilder()
+				.add("customer_id", id)
+				.add("eclaim_subject", subject.getText().toString())
+				.add("eclaim_detail", detail.getText().toString())
+				.add("eclaim_notify", num_active.getText().toString())
+				.add("eclaim_policy", num_policy.getText().toString())
+				.add("car_id", num_car.getText().toString())
+				.add("eclaim_date_event", datepicker.getText().toString())
+				.add("eclaim_name", name.getText().toString())
+				.add("eclaim_location_event",
+						location_action.getText().toString())
+				.add("eclaim_address", address.getText().toString())
+				.add("eclaim_phone", phone.getText().toString())
+				.add("eclaim_status_car", status_car.getText().toString())
+				.add("eclaim_loss", loss.getText().toString())
+				.add("eclaim_location_check",
+						location_check.getText().toString()).build();
 		StrictMode.setThreadPolicy(policy);
-		
+
 		try {
-			JSONObject json_data = new JSONObject(okHttp.POST(Login_Activity.nameHost+ "inserteclaim.php", formBody));
+			JSONObject json_data = new JSONObject(okHttp.POST(
+					Login_Activity.nameHost + "inserteclaim.php", formBody));
 			String code1 = (json_data.getString("code"));
 			if (code1.equals("1")) {
 				Log.e("Insert", "Inserted Successfully");
@@ -763,16 +763,12 @@ public class UploadQueue_Activity extends GMap_Activity {
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-			if (uploadFlag)
-				setResult(RESULT_OK, getIntent());
-			else
-				setResult(RESULT_CANCELED, getIntent());
-			UploadQueue_Activity.this.finish();
+			backToMain();
 			return true;
 		}
 		return super.onKeyDown(keyCode, event);
 	}
-	
+
 	public void setColorDialog() {
 		Dialog d = builder.show();
 		int dividerId = d.getContext().getResources()

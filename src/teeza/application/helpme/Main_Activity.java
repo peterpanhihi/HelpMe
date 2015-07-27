@@ -73,6 +73,17 @@ public class Main_Activity extends SherlockFragmentActivity {
 		appStatus = ApplicationStatus.getInstance();
 		appStatus.setIsInApp(true);
 		setContentView(R.layout.activity_menu);
+		
+		Intent intent = getIntent();
+		selectedNum = intent.getIntExtra("selectItem", 0);
+		appStatus.setIsInPage(intent.getBooleanExtra("isInPage", false));
+		appStatus.checkLocation(this);
+		
+		Log.d("Check onCreate MainActivity ",
+				"isFillPin: " + appStatus.isFillPin() + " isInApp: "
+						+ appStatus.isInApp() + " isInPage: "
+						+ appStatus.isInPage() + " isCall: "
+						+ appStatus.isCall());
 
 		title = new String[] { "Helpme", "เครมย้อนหลัง", "การเดินทาง การจราจร",
 				"สถานที่เกี่ยวข้อง", "เช็คเบี้ยประกัน", "เบอร์โทรฉุกเฉิน",
@@ -104,11 +115,6 @@ public class Main_Activity extends SherlockFragmentActivity {
 		this.getActionBar().setCustomView(v);
 
 		getSupportActionBar().setHomeButtonEnabled(true);
-
-		Intent intent = getIntent();
-		selectedNum = intent.getIntExtra("selectItem", 0);
-		appStatus.setIsInPage(intent.getBooleanExtra("isInPage", false));
-		appStatus.checkLocation(this);
 
 		if (savedInstanceState == null) {
 			mytitle.setText(title[selectedNum]);

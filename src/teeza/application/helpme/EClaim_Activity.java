@@ -13,6 +13,7 @@ import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -42,6 +43,12 @@ public class EClaim_Activity extends GMap_Activity {
 		setContentView(R.layout.eclaim);
 		appStatus = ApplicationStatus.getInstance();
 		appStatus.onCreate();
+		
+		Log.d("Check onResume EClaim_Activity ",
+				"isFillPin: " + appStatus.isFillPin() + " isInApp: "
+						+ appStatus.isInApp() + " isInPage: "
+						+ appStatus.isInPage() + " isCall: "
+						+ appStatus.isCall());
 
 		camera = new Camera(this);
 		mManager = new UserManager(this);
