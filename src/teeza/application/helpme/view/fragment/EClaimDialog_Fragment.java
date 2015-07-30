@@ -28,6 +28,7 @@ public class EClaimDialog_Fragment extends DialogFragment {
 
 	private Main_Activity main;
 	private int position;
+	private String idcus;
 	private AlertDialog.Builder builder;
 	private Button etClaim, etHistory;
 	private EClaimDialog_Fragment dialog;
@@ -40,6 +41,7 @@ public class EClaimDialog_Fragment extends DialogFragment {
 		dialog = this;
 		appStatus = ApplicationStatus.getInstance();
 		this.position = position;
+		this.idcus = idcus;
 	}
 
 	@Override
@@ -57,9 +59,9 @@ public class EClaimDialog_Fragment extends DialogFragment {
 
 			@Override
 			public void onClick(View v) {
-				Intent Upload = new Intent(getActivity(),
-						UploadQueue_Activity.class);
-				startActivity(Upload);
+				main.setOldposition(position);
+				EClaimCheckPolicy_Fragment edf = new EClaimCheckPolicy_Fragment(idcus);
+				edf.show(getActivity().getSupportFragmentManager(), "Dialog");
 				dialog.dismiss();
 			}
 		});

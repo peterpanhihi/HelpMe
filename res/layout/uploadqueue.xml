@@ -90,380 +90,484 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="#ededed"
+                android:layout_margin="5dp"
                 android:orientation="vertical" >
+
+                <teeza.application.helpme.custom_view.CustomText
+                    android:id="@+id/CustomEdittext01"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="10dp"
+                    android:editable="false"
+                    android:fontFamily="DBHelvethaicaX.ttf"
+                    android:hint="ชื่อเหตุการณ์"
+                    android:paddingTop="5dp"
+                    android:textCursorDrawable="@null"
+                    android:textSize="24sp" />
 
                 <teeza.application.helpme.custom_view.CustomEdittext
                     android:id="@+id/Subject"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:background="#ededed"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/round"
                     android:ems="10"
                     android:fontFamily="DBHelvethaicaX.ttf"
-                    android:hint="ชื่อเหตุการณ์"
+                    android:paddingBottom="7dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="7dp"
                     android:singleLine="true"
-                    android:textSize="28sp" >
+                    android:textSize="24sp" >
 
-                    <requestFocus />
+                    <requestFocus android:layout_width="wrap_content" />
                 </teeza.application.helpme.custom_view.CustomEdittext>
             </LinearLayout>
-
-            <!-- num Active -->
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
 
                 <LinearLayout
-                    android:layout_width="125dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_margin="5dp"
                     android:orientation="vertical" >
 
                     <teeza.application.helpme.custom_view.CustomText
                         android:id="@+id/CustomEdittext01"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="10dp"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginLeft="10dp"
                         android:editable="false"
                         android:fontFamily="DBHelvethaicaX.ttf"
                         android:hint="เลขรับแจ้ง"
                         android:textCursorDrawable="@null"
-                        android:textSize="28sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="#ededed"
-                    android:orientation="vertical" >
+                        android:textSize="24sp" />
 
                     <teeza.application.helpme.custom_view.CustomEdittext
                         android:id="@+id/num_active"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="10dp"
-                        android:background="#ededed"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:editable="false"
                         android:ems="10"
                         android:fontFamily="DBHelvethaicaX.ttf"
-                        android:hint="เลขรับแจ้งอุบัติเหตุ"
-                        android:textCursorDrawable="@null"
-                        android:textSize="28sp" />
+                        android:paddingBottom="7dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="7dp"
+                        android:singleLine="true"
+                        android:textSize="24sp" />
                 </LinearLayout>
             </LinearLayout>
-
-            <!-- num policy -->
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
 
                 <LinearLayout
-                    android:layout_width="125dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_margin="5dp"
                     android:orientation="vertical" >
 
                     <teeza.application.helpme.custom_view.CustomText
                         android:id="@+id/CustomEdittext02"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="10dp"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginLeft="10dp"
+                        android:editable="false"
                         android:fontFamily="DBHelvethaicaX.ttf"
                         android:hint="เลขที่กรมธรรม์"
                         android:textCursorDrawable="@null"
-                        android:textSize="25sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="#ededed"
-                    android:orientation="vertical" >
+                        android:textSize="24sp" />
 
                     <teeza.application.helpme.custom_view.CustomEdittext
                         android:id="@+id/num_policy"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="10dp"
-                        android:background="#ededed"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:editable="false"
                         android:ems="10"
                         android:fontFamily="DBHelvethaicaX.ttf"
-                        android:hint="เลขที่กรมธรรม์"
-                        android:nextFocusDown="@+id/num_car"
+                        android:paddingBottom="7dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="7dp"
                         android:singleLine="true"
-                        android:textCursorDrawable="@null"
-                        android:textSize="28sp" />
+                        android:textSize="24sp" />
                 </LinearLayout>
             </LinearLayout>
-
-            <!-- num car -->
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
 
                 <LinearLayout
-                    android:layout_width="125dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_margin="5dp"
                     android:orientation="vertical" >
 
                     <teeza.application.helpme.custom_view.CustomText
                         android:id="@+id/CustomEdittext03"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="10dp"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginLeft="10dp"
+                        android:editable="false"
                         android:fontFamily="DBHelvethaicaX.ttf"
                         android:hint="ทะเบียนรถ"
                         android:textCursorDrawable="@null"
-                        android:textSize="28sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="#ededed"
-                    android:orientation="vertical" >
+                        android:textSize="24sp" />
 
                     <teeza.application.helpme.custom_view.CustomEdittext
                         android:id="@+id/num_car"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="10dp"
-                        android:background="#ededed"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:editable="false"
                         android:ems="10"
                         android:fontFamily="DBHelvethaicaX.ttf"
-                        android:hint="ทะเบียนรถ"
-                        android:nextFocusDown="@+id/name"
+                        android:paddingBottom="7dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="7dp"
                         android:singleLine="true"
-                        android:textCursorDrawable="@null"
-                        android:textSize="28sp" />
+                        android:textSize="24sp" />
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- DateTime Action -->
-
-
-            <!-- Name -->
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="#ededed"
-                android:orientation="vertical" >
+                android:layout_height="wrap_content" >
 
-                <teeza.application.helpme.custom_view.CustomEdittext
-                    android:id="@+id/name"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:background="#ededed"
-                    android:ems="10"
-                    android:fontFamily="DBHelvethaicaX.ttf"
-                    android:hint="ชื่อผู้เอาประกัน"
-                    android:singleLine="true"
-                    android:textSize="28sp" >
-                </teeza.application.helpme.custom_view.CustomEdittext>
-            </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical" >
 
-            <!-- location Action -->
+                    <teeza.application.helpme.custom_view.CustomText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginLeft="10dp"
+                        android:editable="false"
+                        android:fontFamily="DBHelvethaicaX.ttf"
+                        android:hint="ชื่อผู้เอาประกัน"
+                        android:textCursorDrawable="@null"
+                        android:textSize="24sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="#ededed"
-                android:orientation="vertical" >
-
-                <teeza.application.helpme.custom_view.CustomEdittext
-                    android:id="@+id/datepiker"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:background="#ededed"
-                    android:editable="false"
-                    android:ems="10"
-                    android:fontFamily="DBHelvethaicaX.ttf"
-                    android:hint="วันที่เกิดเหตุ"
-                    android:textCursorDrawable="@null"
-                    android:textSize="28sp" >
-                </teeza.application.helpme.custom_view.CustomEdittext>
+                    <teeza.application.helpme.custom_view.CustomEdittext
+                        android:id="@+id/name"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/round"
+                        android:ems="10"
+                        android:fontFamily="DBHelvethaicaX.ttf"
+                        android:paddingBottom="7dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="7dp"
+                        android:singleLine="true"
+                        android:textSize="24sp" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="#ededed"
-                android:orientation="vertical" >
+                android:layout_height="wrap_content" >
 
-                <teeza.application.helpme.custom_view.CustomEdittext
-                    android:id="@+id/location_action"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:background="#ededed"
-                    android:ems="10"
-                    android:fontFamily="DBHelvethaicaX.ttf"
-                    android:hint="สถานที่เกิดเหตุ"
-                    android:nextFocusDown="@+id/detail"
-                    android:singleLine="true"
-                    android:textSize="28sp" >
-                </teeza.application.helpme.custom_view.CustomEdittext>
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical" >
+
+                    <teeza.application.helpme.custom_view.CustomText
+                        android:id="@+id/CustomEdittext03"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginLeft="10dp"
+                        android:editable="false"
+                        android:fontFamily="DBHelvethaicaX.ttf"
+                        android:hint="วันและเวลาที่แจ้งเคลม"
+                        android:textCursorDrawable="@null"
+                        android:textSize="24sp" />
+
+                    <teeza.application.helpme.custom_view.CustomEdittext
+                        android:id="@+id/datepiker"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:editable="false"
+                        android:ems="10"
+                        android:fontFamily="DBHelvethaicaX.ttf"
+                        android:paddingBottom="7dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="7dp"
+                        android:singleLine="true"
+                        android:textSize="24sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical" >
+
+                    <teeza.application.helpme.custom_view.CustomText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="DBHelvethaicaX.ttf"
+                        android:hint="วันและเวลาที่เกิดเหตุ"
+                        android:textCursorDrawable="@null"
+                        android:textSize="24sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+
+                        <teeza.application.helpme.custom_view.CustomEdittext
+                            android:id="@+id/date_accident"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="3dp"
+                            android:layout_weight="9"
+                            android:background="@drawable/round"
+                            android:ems="10"
+                            android:fontFamily="DBHelvethaicaX.ttf"
+                            android:paddingBottom="7dp"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="7dp"
+                            android:singleLine="true"
+                            android:textSize="24sp" />
+
+                        <ImageView
+                            android:id="@+id/calendar"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:src="@drawable/calendar_icon" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical" >
+
+                    <teeza.application.helpme.custom_view.CustomText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginLeft="10dp"
+                        android:editable="false"
+                        android:fontFamily="DBHelvethaicaX.ttf"
+                        android:hint="สถานที่เกิดเหตุ"
+                        android:textCursorDrawable="@null"
+                        android:textSize="24sp" />
+
+                    <teeza.application.helpme.custom_view.CustomEdittext
+                        android:id="@+id/location_action"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/round"
+                        android:ems="10"
+                        android:fontFamily="DBHelvethaicaX.ttf"
+                        android:paddingBottom="7dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="7dp"
+                        android:singleLine="true"
+                        android:textSize="24sp" />
+                </LinearLayout>
             </LinearLayout>
 
             <!-- sub data action -->
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="170dp"
-                android:layout_margin="10dp"
-                android:background="#ededed"
-                android:orientation="vertical" >
+                android:layout_height="wrap_content" >
 
-                <teeza.application.helpme.custom_view.CustomEdittext
-                    android:id="@+id/detail"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:background="#ededed"
-                    android:ems="10"
-                    android:fontFamily="DBHelvethaicaX.ttf"
-                    android:gravity="top|center_vertical"
-                    android:hint="รายละเอียดการเกิดเหตุ"
-                    android:nextFocusDown="@+id/address"
-                    android:singleLine="true"
-                    android:textSize="24sp" >
-                </teeza.application.helpme.custom_view.CustomEdittext>
-            </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical" >
 
-            <!-- Address -->
+                    <teeza.application.helpme.custom_view.CustomText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginLeft="10dp"
+                        android:editable="false"
+                        android:fontFamily="DBHelvethaicaX.ttf"
+                        android:hint="รายละเอียดการเกิดเหตุ"
+                        android:textCursorDrawable="@null"
+                        android:textSize="24sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="#ededed"
-                android:orientation="vertical" >
-
-                <teeza.application.helpme.custom_view.CustomEdittext
-                    android:id="@+id/address"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:background="#ededed"
-                    android:ems="10"
-                    android:fontFamily="DBHelvethaicaX.ttf"
-                    android:hint="ชื่อ ที่อยู่ ที่ติดต่อได้"
-                    android:nextFocusDown="@+id/phone"
-                    android:singleLine="true"
-                    android:textSize="28sp" >
-                </teeza.application.helpme.custom_view.CustomEdittext>
+                    <teeza.application.helpme.custom_view.CustomEdittext
+                        android:id="@+id/detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/round"
+                        android:ems="10"
+                        android:fontFamily="DBHelvethaicaX.ttf"
+                        android:gravity="top|center_vertical"
+                        android:nextFocusDown="@+id/address"
+                        android:paddingBottom="7dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="7dp"
+                        android:singleLine="true"
+                        android:textSize="24sp" />
+                </LinearLayout>
             </LinearLayout>
 
             <!-- Phone -->
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="#ededed"
-                android:orientation="vertical" >
+                android:layout_height="wrap_content" >
 
-                <teeza.application.helpme.custom_view.CustomEdittext
-                    android:id="@+id/phone"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:background="#ededed"
-                    android:ems="10"
-                    android:fontFamily="DBHelvethaicaX.ttf"
-                    android:hint="โทรศัพท์ที่ติดต่อได้"
-                    android:inputType="phone"
-                    android:nextFocusDown="@+id/status_car"
-                    android:singleLine="true"
-                    android:textSize="28sp" >
-                </teeza.application.helpme.custom_view.CustomEdittext>
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical" >
+
+                    <teeza.application.helpme.custom_view.CustomText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginLeft="10dp"
+                        android:editable="false"
+                        android:fontFamily="DBHelvethaicaX.ttf"
+                        android:hint="โทรศัพท์ที่ติดต่อได้"
+                        android:textCursorDrawable="@null"
+                        android:textSize="24sp" />
+
+                    <teeza.application.helpme.custom_view.CustomEdittext
+                        android:id="@+id/phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/round"
+                        android:ems="10"
+                        android:fontFamily="DBHelvethaicaX.ttf"
+                        android:inputType="number"
+                        android:nextFocusDown="@+id/status_car"
+                        android:paddingBottom="7dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="7dp"
+                        android:singleLine="true"
+                        android:textSize="24sp" />
+                </LinearLayout>
             </LinearLayout>
 
             <!-- status car -->
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="#ededed"
-                android:orientation="vertical" >
+                android:layout_height="wrap_content" >
 
-                <teeza.application.helpme.custom_view.CustomEdittext
-                    android:id="@+id/status_car"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:background="#ededed"
-                    android:ems="10"
-                    android:fontFamily="DBHelvethaicaX.ttf"
-                    android:hint="สภาพรถ"
-                    android:nextFocusDown="@+id/loss"
-                    android:singleLine="true"
-                    android:textSize="28sp" >
-                </teeza.application.helpme.custom_view.CustomEdittext>
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical" >
+
+                    <teeza.application.helpme.custom_view.CustomText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginLeft="10dp"
+                        android:editable="false"
+                        android:fontFamily="DBHelvethaicaX.ttf"
+                        android:hint="สภาพรถ"
+                        android:textCursorDrawable="@null"
+                        android:textSize="24sp" />
+
+                    <Spinner
+                        android:id="@+id/status_car"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/btn_dropdown_border"
+                        android:entries="@array/image_size_arrays"
+                        android:fontFamily="DBHelvethaicaX.ttf"
+                        android:textColor="#777777" />
+                </LinearLayout>
             </LinearLayout>
             <!-- loss -->
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="#ededed"
-                android:orientation="vertical" >
+                android:layout_marginBottom="15dp" >
 
-                <teeza.application.helpme.custom_view.CustomEdittext
-                    android:id="@+id/loss"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:background="#ededed"
-                    android:ems="10"
-                    android:fontFamily="DBHelvethaicaX.ttf"
-                    android:hint="ความเสียหายโดยประมาณ"
-                    android:inputType="phone"
-                    android:nextFocusDown="@+id/location_check"
-                    android:singleLine="true"
-                    android:textSize="28sp" >
-                </teeza.application.helpme.custom_view.CustomEdittext>
-            </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical" >
 
-            <!-- Location check -->
+                    <teeza.application.helpme.custom_view.CustomText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginLeft="10dp"
+                        android:editable="false"
+                        android:fontFamily="DBHelvethaicaX.ttf"
+                        android:hint="ระบุความเสียหาย เช่น ไฟหน้าแตก"
+                        android:textCursorDrawable="@null"
+                        android:textSize="24sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="#ededed"
-                android:orientation="vertical" >
-
-                <teeza.application.helpme.custom_view.CustomEdittext
-                    android:id="@+id/location_check"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:background="#ededed"
-                    android:ems="10"
-                    android:fontFamily="DBHelvethaicaX.ttf"
-                    android:hint="สถานที่ที่เราสามารถตรวจสอบได้"
-                    android:nextFocusDown="@+id/UploadQueueFooter"
-                    android:singleLine="true"
-                    android:textSize="28sp" >
-                </teeza.application.helpme.custom_view.CustomEdittext>
+                    <teeza.application.helpme.custom_view.CustomEdittext
+                        android:id="@+id/loss"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/round"
+                        android:ems="10"
+                        android:fontFamily="DBHelvethaicaX.ttf"
+                        android:gravity="top|center_vertical"
+                        android:inputType="textMultiLine"
+                        android:paddingBottom="7dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="7dp"
+                        android:singleLine="true"
+                        android:textSize="24sp" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -495,42 +599,6 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
-    <!--
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" >
-
-        <LinearLayout
-            android:id="@+id/UploadQueueFooter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="3" >
-
-            <Button
-                android:id="@+id/StartUploadBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_weight="2"
-                android:background="#e30053"
-                android:text="ส่งข้อมูล"
-                android:textColor="#ffffff" />
-
-            <Button
-                android:id="@+id/Button01"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_weight="1"
-                android:background="#717171"
-                android:text="ยกเลิก"
-                android:textColor="#ffffff" />
-        </LinearLayout>
-    </RelativeLayout>
-    -->
 
     <teeza.application.helpme.custom_view.CustomText
         android:id="@+id/TextView01"

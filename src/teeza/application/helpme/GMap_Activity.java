@@ -1,8 +1,8 @@
 package teeza.application.helpme;
 
-import android.app.Activity;
 import android.location.Location;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 
@@ -14,7 +14,7 @@ import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
-public abstract class GMap_Activity extends Activity implements ConnectionCallbacks,
+public abstract class GMap_Activity extends FragmentActivity implements ConnectionCallbacks,
 		OnConnectionFailedListener, LocationListener {
 
 	protected static final String TAG = "location-updates-sample";

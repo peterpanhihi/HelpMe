@@ -6,10 +6,19 @@ import android.graphics.drawable.Drawable;
 public class QueueItem {
 	private int id;
 	private String path;
+	private String description = "รายละเอียด";
 	private long media_id;
 	private int uploaded;
 	private Bitmap bitmap;
 	private Drawable draw;
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 	public String getPath() {
 		return path;

@@ -16,10 +16,9 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:fontFamily="DBHelvethaicaX.ttf"
-            android:text="ระบุ เลขที่กรมธรรม์  หรือ ทะเบียนรถ"
+            android:text="ระบุ ทะเบียนรถ"
             android:textColor="#e30053"
             android:textSize="28sp" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -62,53 +61,33 @@
                 android:orientation="vertical"
                 android:weightSum="2" >
 
-                <LinearLayout
+                <teeza.application.helpme.custom_view.CustomEdittext
+                    android:id="@+id/num_policy"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginBottom="2dp"
+                    android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:background="#ededed"
-                    android:orientation="vertical" >
+                    android:background="#00000000"
+                    android:ems="10"
+                    android:fontFamily="DBHelvethaicaX.ttf"
+                    android:hint="กรมธรรม์"
+                    android:textColor="#000000"
+                    android:textCursorDrawable="@null"
+                    android:textSize="24sp" />
 
-                    <teeza.application.helpme.custom_view.CustomEdittext
-                        android:id="@+id/num_policy"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:background="#00000000"
-                        android:ems="10"
-                        android:fontFamily="DBHelvethaicaX.ttf"
-                        android:hint="กรมธรรม์"
-                        android:textColor="#000000"
-                        android:textCursorDrawable="@null"
-                        android:textSize="24sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
+                <Spinner
+                    android:id="@+id/car_id"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginTop="2dp"
-                    android:layout_weight="1"
-                    android:background="#ededed"
-                    android:orientation="vertical" >
-
-                    <teeza.application.helpme.custom_view.CustomEdittext
-                        android:id="@+id/num_car"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:background="#00000000"
-                        android:ems="10"
-                        android:fontFamily="DBHelvethaicaX.ttf"
-                        android:hint="ทะเบียนรถ"
-                        android:textColor="#000000"
-                        android:textCursorDrawable="@null"
-                        android:textSize="24sp" />
-
-                </LinearLayout>
+                    android:layout_weight="0.95"
+                    android:background="@drawable/btn_dropdown_border"
+                    android:entries="@array/image_size_arrays"
+                    android:textColor="#777777"
+                    android:textSize="20sp" />
             </LinearLayout>
-
         </LinearLayout>
 
         <LinearLayout
@@ -118,17 +97,15 @@
             android:orientation="vertical" >
 
             <teeza.application.helpme.custom_view.CustomText
-	            android:fontFamily="DBHelvethaicaX.ttf"
                 android:id="@+id/textnaja"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="*โปรดระบุข้อมูลให้ครบถ้วน"
-                android:textSize="20sp"
-                android:textColor="#ff0000" />
-
+                android:fontFamily="DBHelvethaicaX.ttf"
+                android:text="*โปรดระบุทะเบียนรถ"
+                android:textColor="#ff0000"
+                android:textSize="20sp" />
         </LinearLayout>
-
     </LinearLayout>
 
 </LinearLayout>

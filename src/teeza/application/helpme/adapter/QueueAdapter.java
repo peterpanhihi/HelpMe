@@ -17,10 +17,12 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -31,6 +33,7 @@ public class QueueAdapter extends BaseAdapter {
 	private LayoutInflater mInflater;
 	public ArrayList<QueueItem> queueItems = new ArrayList<QueueItem>();
 	private ViewHolder holder;
+	private View view;
 
 	public QueueAdapter(Activity activity) {
 		this.activity = activity;
@@ -103,8 +106,24 @@ public class QueueAdapter extends BaseAdapter {
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
+		holder.imageview.setOnClickListener(new OnClickListener() {
 
-		holder.imageview.setOnClickListener(onClickDescription);
+			@Override
+			public void onClick(View arg0) {
+				setDescription(position);
+			}
+		});
+		
+		holder.description.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				setDescription(position);
+			}
+		});
+
+		holder.description.setText(queueItems.get(position).getDescription());
+		notifyDataSetChanged();
 
 		holder.imageButton.setOnClickListener(new OnClickListener() {
 
@@ -114,8 +133,6 @@ public class QueueAdapter extends BaseAdapter {
 				notifyDataSetChanged();
 			}
 		});
-
-		holder.description.setOnClickListener(onClickDescription);
 
 		final QueueItem item = getItem(position);
 		if (item.getBitmap() != null) {
@@ -140,51 +157,50 @@ public class QueueAdapter extends BaseAdapter {
 		return convertView;
 
 	}
+	
+	public void setDescription(final int position){
+		LayoutInflater li = LayoutInflater.from(activity);
+		View promptsView = li
+				.inflate(R.layout.prompt_description, null);
 
-	private OnClickListener onClickDescription = new OnClickListener() {
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+				activity);
+		alertDialogBuilder.setView(promptsView);
 
-		@Override
-		public void onClick(View v) {
-			LayoutInflater li = LayoutInflater.from(activity);
-			View promptsView = li.inflate(R.layout.prompt_description, null);
+		final EditText userInput = (EditText) promptsView
+				.findViewById(R.id.editTextDialogUserInput);
 
-			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-					activity);
-			alertDialogBuilder.setView(promptsView);
-
-			final EditText userInput = (EditText) promptsView
-					.findViewById(R.id.editTextDialogUserInput);
-
-			// set dialog message
-			alertDialogBuilder
-					.setCancelable(false)
-					.setPositiveButton("OK",
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int id) {
-									String txt = userInput.getText().toString();
-									if (!txt.equals("")) {
-										holder.description.setText(userInput
-												.getText());
-									}
+		// set dialog message
+		alertDialogBuilder
+				.setCancelable(false)
+				.setPositiveButton("OK",
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int id) {
+								String txt = userInput.getText()
+										.toString();
+								if (!txt.equals("")) {
+									queueItems.get(position)
+											.setDescription(txt);
 								}
-							})
-					.setNegativeButton("Cancel",
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int id) {
-									dialog.cancel();
-								}
-							});
+								InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+								imm.hideSoftInputFromWindow(userInput.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
-			// create alert dialog
-			AlertDialog alertDialog = alertDialogBuilder.create();
+							}
+						})
+				.setNegativeButton("Cancel",
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,
+									int id) {
+								dialog.cancel();
+							}
+						});
 
-			// show it
-			alertDialog.show();
+		// create alert dialog
+		AlertDialog alertDialog = alertDialogBuilder.create();
 
-		}
-	};
+		// show it
+		alertDialog.show();
+	}
 
 	class ViewHolder {
 		public ImageView imageview;

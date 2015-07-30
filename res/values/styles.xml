@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
+
     <!--
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -11,33 +12,33 @@
             backward-compatibility can go here.
         -->
     </style>
-    
-        <!-- Application theme. -->
+
+    <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
-    
-    <style name="Theme.MyTheme" parent="Theme.Sherlock.Light">
-   		 	<item name="actionBarStyle">@style/Widget.MyTheme.ActionBar</item>
-    		<item name="android:actionBarStyle">@style/Widget.MyTheme.ActionBar</item>
-	</style>
 
-	<style name="Widget.MyTheme.ActionBar" parent="Widget.Sherlock.ActionBar">
-   			<item name="android:background">#e30053</item>
-    		<item name="background">#e30053</item>
-	</style>
-    
-     <style name="myCoolDialog" parent="android:Theme.Dialog"> 
-        <item name="android:colorForeground">#e30053</item> 
-     </style> 
-	
+    <style name="Theme.MyTheme" parent="Theme.Sherlock.Light">
+        <item name="actionBarStyle">@style/Widget.MyTheme.ActionBar</item>
+        <item name="android:actionBarStyle">@style/Widget.MyTheme.ActionBar</item>
+    </style>
+
+    <style name="Widget.MyTheme.ActionBar" parent="Widget.Sherlock.ActionBar">
+        <item name="android:background">#e30053</item>
+        <item name="background">#e30053</item>
+    </style>
+
+    <style name="myCoolDialog" parent="android:Theme.Dialog">
+        <item name="android:divider">#e30053</item>
+    </style>
+
     <style name="FullscreenTheme" parent="android:Theme.NoTitleBar">
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowBackground">@null</item>
         <item name="metaButtonBarStyle">@style/ButtonBar</item>
         <item name="metaButtonBarButtonStyle">@style/ButtonBarButton</item>
     </style>
-    
+
     <style name="spinnerTheme" parent="android:Theme.NoTitleBar">
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowBackground">@null</item>

@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -14,6 +15,7 @@ import java.util.Locale;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.squareup.okhttp.FormEncodingBuilder;
@@ -22,6 +24,9 @@ import com.squareup.okhttp.RequestBody;
 import teeza.application.helpme.R;
 import teeza.application.helpme.adapter.QueueAdapter;
 import teeza.application.helpme.custom_view.ExpandableHeightGridView;
+import teeza.application.helpme.date_time_picker.DateTime;
+import teeza.application.helpme.date_time_picker.DateTimePicker;
+import teeza.application.helpme.date_time_picker.SimpleDateTimePicker;
 import teeza.application.helpme.http.HttpFileUpload;
 import teeza.application.helpme.http.OKHttp;
 import teeza.application.helpme.model.ApplicationStatus;
@@ -29,7 +34,7 @@ import teeza.application.helpme.model.QueueItem;
 import teeza.application.helpme.persistence.UserManager;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
-import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -57,14 +62,17 @@ import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.inputmethod.EditorInfo;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class UploadQueue_Activity extends GMap_Activity {
+public class UploadQueue_Activity extends GMap_Activity implements
+		DateTimePicker.OnDateTimeSetListener {
 	final String PREF_NAME = "IMAGE_ID";
 
 	private static final int CANCELED = -4;
@@ -85,23 +93,24 @@ public class UploadQueue_Activity extends GMap_Activity {
 
 	private UserManager mManager;
 	private UploadTask uploadTask;
-	private int uploadCounter, dialogCouter;
+	private int uploadCounter;
 	private boolean uploadFlag;
-	private int year, month, day;
 	private double lat, lng;
 	private Context mContext;
 	private Builder builder;
 	private EditText detail, subject, num_active, num_policy, num_car,
-			datepicker, name, location_action, address, phone, status_car,
-			loss, location_check;
+			datepicker, name, location_action, phone, loss, date_accident;
+	private Spinner status_car;
 	private Button back;
 	private File imageFile_new;
+	private ImageView btnCal;
 
 	private StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
 			.permitAll().build();
 
 	private OKHttp okHttp;
 	private ApplicationStatus appStatus;
+	private SimpleDateTimePicker simpleDateTimePicker;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -123,35 +132,61 @@ public class UploadQueue_Activity extends GMap_Activity {
 		datepicker = (EditText) findViewById(R.id.datepiker);
 		name = (EditText) findViewById(R.id.name);
 		location_action = (EditText) findViewById(R.id.location_action);
-		address = (EditText) findViewById(R.id.address);
 		phone = (EditText) findViewById(R.id.phone);
-		status_car = (EditText) findViewById(R.id.status_car);
+		status_car = (Spinner) findViewById(R.id.status_car);
 		loss = (EditText) findViewById(R.id.loss);
-		location_check = (EditText) findViewById(R.id.location_check);
+		date_accident = (EditText) findViewById(R.id.date_accident);
+		btnCal = (ImageView) findViewById(R.id.calendar);
 		mContext = this;
 		sp = this.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
 
-		num_active.setText(sp.getString("active", " "));
-		num_policy.setText(sp.getString("num_policy", " "));
-		num_car.setText(sp.getString("num_car", " "));
+		String[] status = { "ใช้งานได้", "ใช้งานไม่ได้" };
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+				R.layout.spiner_layout, R.id.textspin, status);
+		status_car.setAdapter(adapter);
 
-		if (num_policy.getText().toString().equals("")) {
-			subject.setNextFocusDownId(R.id.num_policy);
-		} else {
-			subject.setNextFocusDownId(R.id.name);
+		Intent intent = getIntent();
+		num_policy.setText(intent.getStringExtra("car_policy"));
+		num_car.setText(intent.getStringExtra("car_id"));
+
+		String url = Login_Activity.nameHost + "check_policy.php";
+		RequestBody formBody = new FormEncodingBuilder()
+				.add("num_policy", num_policy.getText().toString())
+				.add("num_car", num_car.getText().toString())
+				.add("customer_id", id).build();
+
+		try {
+			JSONObject json_data = new JSONObject(okHttp.POST(url, formBody));
+			num_active.setText(json_data.getString("active"));
+
+		} catch (JSONException e1) {
+			e1.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		name.setNextFocusDownId(R.id.location_action);
+
+		subject.setNextFocusDownId(R.id.name);
 
 		// Get current date by calender
 
-		final Calendar c = Calendar.getInstance();
-		year = c.get(Calendar.YEAR);
-		month = c.get(Calendar.MONTH);
-		day = c.get(Calendar.DAY_OF_MONTH);
-
-		datepicker.setText(year + "-" + month + "-" + day);
+		DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy, HH:mm a");
+		String date = df.format(Calendar.getInstance().getTime());
+		datepicker.setText(date);
 
 		name.setText(mManager.getuser().getname());
+		name.setNextFocusDownId(R.id.date_accident);
+
+		simpleDateTimePicker = SimpleDateTimePicker.make(
+				"Set Date & Time Title", new Date(), this,
+				getSupportFragmentManager());
+
+		btnCal.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				simpleDateTimePicker.show();
+			}
+		});
 
 		location_action.setOnFocusChangeListener(new OnFocusChangeListener() {
 			@Override
@@ -162,61 +197,7 @@ public class UploadQueue_Activity extends GMap_Activity {
 			}
 		});
 
-		address.setText(mManager.getuser().getaddress());
-
-		location_check.setOnFocusChangeListener(new OnFocusChangeListener() {
-
-			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-				((EditText) v).setText(getAddress(lat, lng));
-
-			}
-		});
-
 		phone.setText(mManager.getuser().getphone());
-
-		datepicker.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// showDialog(DATE_DIALOG_ID);
-				if (dialogCouter == 0) {
-					builder = new AlertDialog.Builder(new ContextThemeWrapper(
-							mContext, R.style.AppTheme));
-					@SuppressWarnings("static-access")
-					LayoutInflater inflater = (LayoutInflater) mContext
-							.getSystemService(mContext.LAYOUT_INFLATER_SERVICE);
-					View layout = inflater.inflate(R.layout.dialog_datetime,
-							null);
-					final DatePicker input = (DatePicker) layout
-							.findViewById(R.id.datePicker1);
-					builder.setView(layout);
-					builder.setCancelable(true);
-					builder.setPositiveButton("Cancel",
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int whichButton) {
-									dialog.cancel();
-									dialogCouter = 0;
-								}
-							});
-					builder.setNegativeButton("Set",
-							new DialogInterface.OnClickListener() {
-								public void onClick(
-										final DialogInterface dialog,
-										int whichButton) {
-									datepicker.setText(input.getYear() + "-"
-											+ input.getMonth() + "-"
-											+ input.getDayOfMonth());
-									dialogCouter = 0;
-								}
-
-							});
-					builder.show();
-					dialogCouter++;
-				}
-
-			}
-		});
 
 		uploadList = (ExpandableHeightGridView) findViewById(R.id.UploadList);
 		uploadList.setAdapter(queueAdapter);
@@ -325,21 +306,10 @@ public class UploadQueue_Activity extends GMap_Activity {
 							Toast.makeText(getApplication(),
 									"กรุณาใส่รายละเอียดการเกิดเหตุ",
 									Toast.LENGTH_SHORT).show();
-						} else if ((address.getText().toString()).equals("")) {
-							address.setFocusable(true);
-							Toast.makeText(getApplication(),
-									"กรุณาใส่ชื่อ ที่อยู่ ที่ติดต่อได้",
-									Toast.LENGTH_SHORT).show();
 						} else if ((phone.getText().toString()).equals("")) {
 							phone.setFocusable(true);
 							Toast.makeText(getApplication(),
 									"กรุณาใส่เบอร์โทรศัพท์ที่ติดต่อได้",
-									Toast.LENGTH_SHORT).show();
-						} else if ((location_check.getText().toString())
-								.equals("")) {
-							location_check.setFocusable(true);
-							Toast.makeText(getApplication(),
-									"กรุณาใส่สถานที่ที่เราสามารถตรวจสอบได",
 									Toast.LENGTH_SHORT).show();
 						} else {
 							send();
@@ -356,26 +326,12 @@ public class UploadQueue_Activity extends GMap_Activity {
 			}
 		});
 
-		location_check
-				.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-					@Override
-					public boolean onEditorAction(TextView v, int actionId,
-							KeyEvent event) {
-						if (actionId == EditorInfo.IME_ACTION_DONE) {
-							location_check.clearFocus();
-							startUploadBtn.requestFocusFromTouch();
-							return true;
-						}
-						return false;
-					}
-				});
-
 		super.onCreate(savedInstanceState);
 	}
 
 	public void backToMain() {
 		builder = new AlertDialog.Builder(mContext);
-		builder.setTitle("HelpMe");
+		builder.setTitle("เคลมย้อนหลัง");
 		builder.setMessage("ต้องการยกเลิกการทำงาน ? ");
 		builder.setNegativeButton("ใช่", new DialogInterface.OnClickListener() {
 			@Override
@@ -640,43 +596,25 @@ public class UploadQueue_Activity extends GMap_Activity {
 			try {
 				removeDialog(PROGRESSDIALOG_ID);
 
-				AlertDialog.Builder builder = new AlertDialog.Builder(
-						UploadQueue_Activity.this);
+				builder = new AlertDialog.Builder(mContext);
 
 				// File imageFile_del = new
 				// File(imageFile_new.getAbsolutePath());
 				if (queueAdapter.getCount() > 0) {
 					String message = "ข้อมูลถูกส่งเรียบร้อยแล้ว";
-
-					builder.setMessage(message)
-							.setCancelable(false)
-							.setPositiveButton("Ok",
-									new DialogInterface.OnClickListener() {
-										public void onClick(
-												DialogInterface dialog, int id) {
-											Intent intent = new Intent();
-											if (uploadFlag)
-												setResult(RESULT_OK, intent);
-											else
-												setResult(RESULT_CANCELED,
-														intent);
-											UploadQueue_Activity.this.finish();
-										}
-									});
-					final AlertDialog alert = builder.create();
-
-					// Extra screen wake up notification
-					WindowManager.LayoutParams winParams = alert.getWindow()
-							.getAttributes();
-					winParams.flags |= (WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
-					alert.getWindow().setAttributes(winParams);
-
-					alert.show();
-
-					// Extra vibrate notification
-					((Vibrator) getSystemService(Context.VIBRATOR_SERVICE))
-							.vibrate(1000);
-
+					builder.setTitle("เคลมย้อนหลัง");
+					builder.setMessage(message);
+					builder.setNegativeButton("Ok",
+							new DialogInterface.OnClickListener() {
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+									Intent intent = new Intent(mContext,
+											Main_Activity.class);
+									intent.putExtra("isInPage", true);
+									startActivity(intent);
+								}
+							});					
 				} else {
 					builder.setMessage("Please select photo to upload")
 							.setCancelable(false)
@@ -687,20 +625,12 @@ public class UploadQueue_Activity extends GMap_Activity {
 											dialog.cancel();
 										}
 									});
-					final AlertDialog alert = builder.create();
-
-					// Extra screen wake up notification
-					WindowManager.LayoutParams winParams = alert.getWindow()
-							.getAttributes();
-					winParams.flags |= (WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
-					alert.getWindow().setAttributes(winParams);
-
-					alert.show();
-
-					// Extra vibrate notification
-					((Vibrator) getSystemService(Context.VIBRATOR_SERVICE))
-							.vibrate(1000);
 				}
+
+				setColorDialog();
+				// Extra vibrate notification
+				((Vibrator) getSystemService(Context.VIBRATOR_SERVICE))
+						.vibrate(1000);
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -721,12 +651,12 @@ public class UploadQueue_Activity extends GMap_Activity {
 				.add("eclaim_name", name.getText().toString())
 				.add("eclaim_location_event",
 						location_action.getText().toString())
-				.add("eclaim_address", address.getText().toString())
 				.add("eclaim_phone", phone.getText().toString())
-				.add("eclaim_status_car", status_car.getText().toString())
+				.add("eclaim_status_car",
+						status_car.getSelectedItem().toString())
 				.add("eclaim_loss", loss.getText().toString())
-				.add("eclaim_location_check",
-						location_check.getText().toString()).build();
+				.build();
+		
 		StrictMode.setThreadPolicy(policy);
 
 		try {
@@ -794,5 +724,11 @@ public class UploadQueue_Activity extends GMap_Activity {
 				.getIdentifier("android:id/alertTitle", null, null);
 		TextView tv = (TextView) progressDialog.findViewById(textViewId);
 		tv.setTextColor(getResources().getColor(R.color.default_pink));
+	}
+
+	@Override
+	public void DateTimeSet(Date date) {
+		DateTime mDateTime = new DateTime(date);
+		date_accident.setText(mDateTime.getDateString());
 	}
 }
