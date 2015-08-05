@@ -6,6 +6,7 @@ import teeza.application.helpme.model.ApplicationStatus;
 import teeza.application.helpme.persistence.UserManager;
 import teeza.application.helpme.view.fragment.Callcenter_Fragment;
 import teeza.application.helpme.view.fragment.CheckInsurance_Fragment;
+import teeza.application.helpme.view.fragment.EClaimCheckPolicy_Fragment;
 import teeza.application.helpme.view.fragment.EClaimDialog_Fragment;
 import teeza.application.helpme.view.fragment.GPS_Fragment;
 import teeza.application.helpme.view.fragment.Main_Fragment;
@@ -262,9 +263,9 @@ public class Main_Activity extends SherlockFragmentActivity {
 				mDrawerLayout.openDrawer(mDrawerList);
 			}
 		} else if (item.getItemId() == R.id.add_item) {
-			Intent Upload = new Intent(getApplicationContext(),
-					UploadQueue_Activity.class);
-			startActivityForResult(Upload, 1);
+			EClaimCheckPolicy_Fragment edf = new EClaimCheckPolicy_Fragment(idcus);
+			edf.show(getSupportFragmentManager(), "Dialog");
+			appStatus.setIsInPage(true);
 		} else if (item.getItemId() == R.id.oil_item) {
 			Intent Priceoil = new Intent(getApplicationContext(),
 					PriceOil_Activity.class);

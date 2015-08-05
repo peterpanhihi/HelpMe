@@ -26,8 +26,7 @@ public class ChangePass_Activity extends Activity {
 	private TextView error;
 	private Button submit, cancel;
 	private UserManager mManager;
-	private String idcus, oldpassword, newpassword,
-			confnewpassword;
+	private String idcus, oldpassword, newpassword, confnewpassword;
 	private StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
 			.permitAll().build();
 	private OKHttp okHttp;
@@ -53,41 +52,20 @@ public class ChangePass_Activity extends Activity {
 		error = (TextView) findViewById(R.id.error);
 		error.setVisibility(View.INVISIBLE);
 
+		confnewpass.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				submitPass();
+			}
+		});
+
 		submit.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				oldpassword = oldpass.getText().toString();
-				newpassword = newpass.getText().toString();
-				confnewpassword = confnewpass.getText().toString();
-				if (oldpassword.equals("") || newpassword.equals("")
-						|| confnewpassword.equals("")) {
-					error.setText("*โปรดใส่ข้อมูลให้ครบถ้วน");
-					error.setVisibility(View.VISIBLE);
-				} else if (!(oldpassword.equals(mManager.getPassword()
-						.toString()))) {
-					error.setText("*รหัสผ่านไม่ถูกต้อง");
-					error.setVisibility(View.VISIBLE);
-				} else if (!(newpassword.equals(confnewpassword))) {
-					error.setText("*รหัสผ่านใหม่ไม่ตรงกัน");
-					error.setVisibility(View.VISIBLE);
-				} else {
-					mManager.changepass(oldpassword, newpassword);
-					send(newpassword);
-					error.setVisibility(View.INVISIBLE);
-					oldpass.setText("");
-					newpass.setText("");
-					confnewpass.setText("");
-					Toast.makeText(getApplicationContext(),
-							"เปลี่ยนรหัสผ่านเรียบร้อยแล้ว", Toast.LENGTH_LONG)
-							.show();
-					Intent intent = new Intent(getApplicationContext(),
-							Main_Activity.class);
-					intent.putExtra("selectItem", 6);
-					intent.putExtra("isInPage", true);
-					startActivity(intent);
-				}
+				submitPass();
 			}
 		});
+
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -97,11 +75,12 @@ public class ChangePass_Activity extends Activity {
 		});
 	}
 
-	void send(String newpasswordd) {
+	void send() {
 		try {
-			RequestBody formBody = new FormEncodingBuilder().add("customer_id", idcus)
-					.add("newpassword", newpasswordd).build();
-			okHttp.POST(Login_Activity.nameHost+ "cpassword.php", formBody);
+			RequestBody formBody = new FormEncodingBuilder()
+					.add("customer_id", idcus).add("newpassword", newpassword)
+					.build();
+			okHttp.POST(Login_Activity.nameHost + "cpassword.php", formBody);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -115,6 +94,37 @@ public class ChangePass_Activity extends Activity {
 			if (resultCode == this.RESULT_OK) {
 				appStatus.onResume();
 			}
+		}
+	}
+
+	public void submitPass() {
+		oldpassword = oldpass.getText().toString();
+		newpassword = newpass.getText().toString();
+		confnewpassword = confnewpass.getText().toString();
+		if (oldpassword.equals("") || newpassword.equals("")
+				|| confnewpassword.equals("")) {
+			error.setText("*โปรดใส่ข้อมูลให้ครบถ้วน");
+			error.setVisibility(View.VISIBLE);
+		} else if (!(oldpassword.equals(mManager.getPassword().toString()))) {
+			error.setText("*รหัสผ่านไม่ถูกต้อง");
+			error.setVisibility(View.VISIBLE);
+		} else if (!(newpassword.equals(confnewpassword))) {
+			error.setText("*รหัสผ่านใหม่ไม่ตรงกัน");
+			error.setVisibility(View.VISIBLE);
+		} else {
+			mManager.changepass(oldpassword, newpassword);
+			send();
+			error.setVisibility(View.INVISIBLE);
+			oldpass.setText("");
+			newpass.setText("");
+			confnewpass.setText("");
+			Toast.makeText(getApplicationContext(),
+					"เปลี่ยนรหัสผ่านเรียบร้อยแล้ว", Toast.LENGTH_LONG).show();
+			Intent intent = new Intent(getApplicationContext(),
+					Main_Activity.class);
+			intent.putExtra("selectItem", 6);
+			intent.putExtra("isInPage", true);
+			startActivity(intent);
 		}
 	}
 

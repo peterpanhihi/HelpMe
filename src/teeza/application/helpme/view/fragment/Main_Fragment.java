@@ -17,12 +17,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
@@ -54,6 +56,7 @@ public class Main_Fragment extends GMap_Fragment {
 	private ApplicationStatus appStatus;
 	private OKHttp okHttp;
 	private StrictMode.ThreadPolicy policy;
+	private boolean isClick;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -115,18 +118,20 @@ public class Main_Fragment extends GMap_Fragment {
 									.fromResource(R.drawable.marker_user)));
 				}
 				if (!zoom) {
-					mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
-							coordinate, 16));
+					mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(coordinate, 16));
 					zoom = true;
 				}
 				mMap.setOnMarkerClickListener(new OnMarkerClickListener() {
 
 					@Override
 					public boolean onMarkerClick(Marker arg0) {
-						if (mManager.getStatsend().equals("0"))
-							Helpme();
-						else
-							Claimed();
+						if(!isClick) {
+							isClick = true;
+							if (mManager.getStatsend().equals("0"))
+								Helpme();
+							else
+								Claimed();
+						}
 						return false;
 					}
 				});
@@ -144,7 +149,6 @@ public class Main_Fragment extends GMap_Fragment {
 	}
 
 	public void Helpme() {
-
 		builder = new AlertDialog.Builder(new ContextThemeWrapper(
 				getActivity(), R.style.AppTheme));
 		@SuppressWarnings("static-access")
@@ -155,18 +159,19 @@ public class Main_Fragment extends GMap_Fragment {
 		builder.setPositiveButton("ไม่ต้องการ",
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
+						isClick = false;
 						dialog.cancel();
 					}
 				});
 		builder.setNegativeButton("ใช่", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int id) {
 				// push statement
-				Intent helpme = new Intent(getActivity(),
-						UploadQueueHelpme_Activity.class);
+				Intent helpme = new Intent(getActivity(), UploadQueueHelpme_Activity.class);
 				helpme.putExtra("lati", lat);
 				helpme.putExtra("long", lng);
 				helpme.putExtra("isInPage", "true");
 				getActivity().startActivityForResult(helpme, 1);
+				isClick = false;
 				dialog.cancel();
 			}
 		});
@@ -186,6 +191,7 @@ public class Main_Fragment extends GMap_Fragment {
 		builder.setPositiveButton("ไม่ใช่",
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
+						isClick = false;
 						dialog.cancel();
 					}
 				});
@@ -198,13 +204,12 @@ public class Main_Fragment extends GMap_Fragment {
 				mMap.clear();
 				cancel[0] = false;
 				cancel[1] = false;
-				mMarker = mMap.addMarker(new MarkerOptions().position(
-						new LatLng(lat, lng)).icon(
-						BitmapDescriptorFactory
-								.fromResource(R.drawable.marker_user)));
+				mMarker = mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_user)));
 				updateUI();
+				mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
+						coordinate, 16));
+				isClick = false;
 				dialog.cancel();
-
 			}
 		});
 		AlertDialog alert11 = builder.create();
@@ -243,14 +248,21 @@ public class Main_Fragment extends GMap_Fragment {
 			Document doc = md.getDocument((new LatLng(lat2, lng2)),
 					(new LatLng(lat, lng)), GMapV2Direction.MODE_DRIVING);
 			ArrayList<LatLng> directionPoint = md.getDirection(doc);
-			PolylineOptions rectLine = new PolylineOptions().width(8).color(
-					Color.RED);
+			PolylineOptions rectLine = new PolylineOptions().width(8).color(Color.BLUE);
 			for (int i = 0; i < directionPoint.size(); i++) {
 				rectLine.add(directionPoint.get(i));
 			}
 
 			@SuppressWarnings("unused")
 			Polyline polylin = this.mMap.addPolyline(rectLine);
+			
+			LatLngBounds.Builder builder = new LatLngBounds.Builder();
+			builder.include(mMarker.getPosition());
+			builder.include(mMarker2.getPosition());
+			LatLngBounds bounds = builder.build();
+			
+			CameraUpdate camera = CameraUpdateFactory.newLatLngBounds(bounds, 400);
+			mMap.animateCamera(camera);
 		} else {
 			mMarker = mMap.addMarker(new MarkerOptions().position(
 					new LatLng(lat, lng)).icon(

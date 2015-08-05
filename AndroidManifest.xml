@@ -149,7 +149,7 @@
         </activity>
         
         <activity
-            android:name="teeza.application.helpme.List_Activity"
+            android:name="teeza.application.helpme.CallList_Activity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
         </activity>

@@ -26,6 +26,7 @@ public class PriceOil_Activity extends Activity {
 	private Button back;
 	private ApplicationStatus appStatus;
 	private boolean isCancel;
+	private JSONObject c;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,8 @@ public class PriceOil_Activity extends Activity {
 
 		appStatus = ApplicationStatus.getInstance();
 		appStatus.onCreate();
+		
+		okHttp = new OKHttp();
 
 		oil95 = (TextView) findViewById(R.id.price95);
 		oilso95 = (TextView) findViewById(R.id.priceso95);
@@ -58,7 +61,20 @@ public class PriceOil_Activity extends Activity {
 			RequestBody formBody = new FormEncodingBuilder() 
 			.add("pull", "1")
 			.build();
-			okHttp.POST("http://api.sixhead.com/oilprice/get-data.php", formBody);
+			String output = okHttp.POST("http://api.sixhead.com/oilprice/get-data.php", formBody);
+			
+			try {
+				c = new JSONObject(output);
+				oil95.setText(c.getString("oil1"));
+				oilso95.setText(c.getString("oil2"));
+				oilso91.setText(c.getString("oil3"));
+				oilsoe20.setText(c.getString("oil4"));
+				oilsoe85.setText(c.getString("oil5"));
+				oilde.setText(c.getString("oil6"));
+
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -100,22 +116,5 @@ public class PriceOil_Activity extends Activity {
 	public void onBackPressed() {
 		isCancel = true;
 		super.onBackPressed();
-	}
-	
-	@Subscribe
-	public void dataRecived(String output) {
-		JSONObject c;
-		try {
-			c = new JSONObject(output);
-			oil95.setText(c.getString("oil1"));
-			oilso95.setText(c.getString("oil2"));
-			oilso91.setText(c.getString("oil3"));
-			oilsoe20.setText(c.getString("oil4"));
-			oilsoe85.setText(c.getString("oil5"));
-			oilde.setText(c.getString("oil6"));
-
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
 	}
 }

@@ -10,12 +10,14 @@ import teeza.application.helpme.http.GMapV2Direction;
 import teeza.application.helpme.model.ApplicationStatus;
 import teeza.application.helpme.model.ArrayMarker;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
@@ -71,6 +73,9 @@ public class SearchPlace_Fragment extends GMap_Fragment {
 	private String markTitle, markPhone;
 	private ApplicationStatus appStatus;
 	private HashMap<String, Integer> markerID;
+	private LatLngBounds.Builder latlngBuilder;
+	private LatLngBounds bounds;
+	private CameraUpdate cu;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -93,7 +98,7 @@ public class SearchPlace_Fragment extends GMap_Fragment {
 
 		appStatus = ApplicationStatus.getInstance();
 		appStatus.checkLocation(getActivity());
-		
+
 		if (appStatus.isOnline(getActivity())) {
 			if (mMap == null)
 				mMap = ((SupportMapFragment) getFragmentManager()
@@ -132,13 +137,13 @@ public class SearchPlace_Fragment extends GMap_Fragment {
 					markLinePlace(R.drawable.marker_restaurant);
 				else if (statusmark == 6)
 					markLinePlace(R.drawable.marker_gasoline);
-
-				mMarker = mMap.addMarker(new MarkerOptions().position(
-						new LatLng(lat, lng)).icon(
-						BitmapDescriptorFactory
-								.fromResource(R.drawable.marker_user)));
-				mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
-						coordinate, 14));
+				else {
+					mMarker = mMap.addMarker(new MarkerOptions()
+							.position(new LatLng(lat, lng))
+							.title("คุณ")
+							.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_user)));
+					mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(coordinate, 14));
+				}
 				updateRange();
 			}
 		}
@@ -164,7 +169,8 @@ public class SearchPlace_Fragment extends GMap_Fragment {
 		spin.setAdapter(StrNameAdap1);
 		spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 			@Override
-			public void onItemSelected(AdapterView<?> arg0, View arg1,int arg2, long arg3) {
+			public void onItemSelected(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
 				mMap.clear();
 				switch (arg2) {
 				case 1:
@@ -197,6 +203,7 @@ public class SearchPlace_Fragment extends GMap_Fragment {
 	public void markPlace(String type, final int resID) {
 		appStatus.checkLocation(getActivity());
 		Listmarker = new ArrayList<ArrayMarker>();
+		latlngBuilder = new LatLngBounds.Builder();
 		mMap.clear();
 		mMarker = mMap.addMarker(new MarkerOptions()
 				.position(new LatLng(lat, lng))
@@ -206,7 +213,8 @@ public class SearchPlace_Fragment extends GMap_Fragment {
 		markerID.put(mMarker.getTitle(), Integer.MAX_VALUE);
 		mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lng),
 				15));
-
+		latlngBuilder.include(new LatLng(lat, lng));
+		
 		gp.setLogging(true);
 		gp.setOnPlaceResponseListener(new OnPlaceResponseListener() {
 			public void onResponse(String status,
@@ -234,16 +242,20 @@ public class SearchPlace_Fragment extends GMap_Fragment {
 						arrayMarker.setlati(lat2);
 						arrayMarker.setlongi(lng2);
 						pos = new LatLng(lat2, lng2);
-						mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
-								coordinate, 15));
 						mMap.addMarker(new MarkerOptions()
 								.position(pos)
 								.title(arrayMarker.getname())
 								.snippet(arrayMarker.getaddress())
 								.icon(BitmapDescriptorFactory
 										.fromResource(resID)));
+						latlngBuilder.include(pos);
 						Listmarker.add(arrayMarker);
 					}
+					
+					bounds = latlngBuilder.build();
+
+					cu = CameraUpdateFactory.newLatLngBounds(bounds, 200);
+					mMap.animateCamera(cu);
 
 					mMap.setOnInfoWindowClickListener(new OnInfoWindowClickListener() {
 
@@ -340,7 +352,7 @@ public class SearchPlace_Fragment extends GMap_Fragment {
 		mMap.addMarker(new MarkerOptions().position(point).title(markTitle)
 				.snippet(markPhone)
 				.icon(BitmapDescriptorFactory.fromResource(resID)));
-		mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinate, 15));
+		
 		GMapV2Direction md = new GMapV2Direction();
 		Document doc = md.getDocument(coordinate, point,
 				GMapV2Direction.MODE_DRIVING);
@@ -353,6 +365,15 @@ public class SearchPlace_Fragment extends GMap_Fragment {
 		@SuppressWarnings("unused")
 		Polyline polylin = mMap.addPolyline(rectLine);
 
+		latlngBuilder = new LatLngBounds.Builder();
+		latlngBuilder.include(coordinate);
+		latlngBuilder.include(point);
+		bounds = latlngBuilder.build();
+
+		cu = CameraUpdateFactory.newLatLngBounds(
+				bounds, 400);
+		mMap.animateCamera(cu);
+		
 		if (!markPhone.equals("Unknown")) {
 			mMap.setOnInfoWindowClickListener(new OnInfoWindowClickListener() {
 				@Override
@@ -366,7 +387,7 @@ public class SearchPlace_Fragment extends GMap_Fragment {
 			});
 		}
 	}
-	
+
 	@Override
 	public void onDestroyView() {
 		super.onDestroyView();

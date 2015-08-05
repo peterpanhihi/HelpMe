@@ -169,6 +169,10 @@ public class QueueAdapter extends BaseAdapter {
 
 		final EditText userInput = (EditText) promptsView
 				.findViewById(R.id.editTextDialogUserInput);
+		
+		if(!queueItems.get(position).getDescription().equals("รายละเอียด")){
+			userInput.setText(queueItems.get(position).getDescription());
+		}
 
 		// set dialog message
 		alertDialogBuilder

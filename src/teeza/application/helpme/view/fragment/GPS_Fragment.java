@@ -40,6 +40,7 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.PlaceBuffer;
 import com.google.android.gms.location.places.Places;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -60,7 +61,7 @@ public class GPS_Fragment extends GMap_Fragment {
 
 	private AutoCompleteTextView mAutocompleteView;
 
-	private static final LatLngBounds BOUNDS_GREATER_SYDNEY = new LatLngBounds(
+	public static final LatLngBounds BOUNDS_GREATER_SYDNEY = new LatLngBounds(
 			new LatLng(-34.041458, 150.790100), new LatLng(-33.682247,
 					151.383362));
 	private GoogleMap mMap;
@@ -79,6 +80,9 @@ public class GPS_Fragment extends GMap_Fragment {
 	private String status2 = "0";
 	private int stat = 1;
 	private ApplicationStatus appStatus;
+	private LatLngBounds.Builder latlngBuilder;
+	private LatLngBounds bounds;
+	private CameraUpdate cu;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -140,23 +144,6 @@ public class GPS_Fragment extends GMap_Fragment {
 					}
 				});
 
-		// btsearch = (ImageView)
-		// rootView.findViewById(R.id.imageView_searchgps);
-		// btsearch.setOnClickListener(new OnClickListener() {
-		// public void onClick(View v) {
-		// appStatus.checkLocation(getActivity());
-		// if (mAutocompleteView.getText().equals("")) {
-		// Toast.makeText(getActivity().getApplicationContext(),
-		// "Please Location", Toast.LENGTH_SHORT).show();
-		// } else {
-		// search(v);
-		// hideSoftKeyboard(getActivity());
-		// status = "1";
-		// }
-		//
-		// }
-		// });
-
 		btnclear = (ImageView) rootView.findViewById(R.id.imageView_close);
 		btnclear.setOnClickListener(new OnClickListener() {
 			@Override
@@ -165,6 +152,16 @@ public class GPS_Fragment extends GMap_Fragment {
 				status = "0";
 				resetLatLng();
 				updateUI();
+				
+				mMap.clear();
+				mMap.addMarker(new MarkerOptions()
+						.position(new LatLng(lat, lng))
+						.title("คุณ")
+						.icon(BitmapDescriptorFactory
+								.fromResource(R.drawable.marker_user)));
+				mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
+						coordinate, 14));
+				
 			}
 		});
 
@@ -193,14 +190,14 @@ public class GPS_Fragment extends GMap_Fragment {
 
 				builder.setView(layout);
 				builder.setCancelable(true);
-				builder.setPositiveButton("ยกเลิก",
+				builder.setPositiveButton("ไม่ต้องการ",
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog,
 									int whichButton) {
 								dialog.cancel();
 							}
 						});
-				builder.setNegativeButton("ตกลง",
+				builder.setNegativeButton("ต้องการ",
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog,
 									int whichButton) {
@@ -407,12 +404,14 @@ public class GPS_Fragment extends GMap_Fragment {
 							.icon(BitmapDescriptorFactory
 									.fromResource(R.drawable.marker_destination)));
 
-					CameraPosition cameraPosition = new CameraPosition.Builder()
-							.target(point).zoom(15).build();
-					mMap.moveCamera(CameraUpdateFactory
-							.newLatLngZoom(point, 15));
-					mMap.animateCamera(CameraUpdateFactory
-							.newCameraPosition(cameraPosition));
+					latlngBuilder = new LatLngBounds.Builder();
+					latlngBuilder.include(new LatLng(lat, lng));
+					latlngBuilder.include(point);
+					bounds = latlngBuilder.build();
+
+					cu = CameraUpdateFactory.newLatLngBounds(
+							bounds, 500);
+					mMap.animateCamera(cu);
 
 					mMap.setOnMarkerClickListener(new OnMarkerClickListener() {
 						@Override
@@ -448,7 +447,7 @@ public class GPS_Fragment extends GMap_Fragment {
 												.getPosition().longitude);
 
 								builder.setCancelable(true);
-								builder.setPositiveButton("ยกเลิก",
+								builder.setPositiveButton("ไม่ต้องการ",
 										new DialogInterface.OnClickListener() {
 											public void onClick(
 													DialogInterface dialog,
@@ -456,7 +455,7 @@ public class GPS_Fragment extends GMap_Fragment {
 												dialog.cancel();
 											}
 										});
-								builder.setNegativeButton("เส้นทาง",
+								builder.setNegativeButton("ต้องการ",
 										new DialogInterface.OnClickListener() {
 											public void onClick(
 													DialogInterface dialog,
@@ -478,7 +477,7 @@ public class GPS_Fragment extends GMap_Fragment {
 					mAutocompleteView.setText("");
 					status = "0";
 				}
-			} catch (IOException e) { 
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
@@ -489,7 +488,7 @@ public class GPS_Fragment extends GMap_Fragment {
 		mMap.clear();
 		mMap.addMarker(new MarkerOptions()
 				.position(coordinate)
-				.title("คุณ")
+				.title("เธ�เธธเธ�")
 				.icon(BitmapDescriptorFactory
 						.fromResource(R.drawable.marker_user)));
 		mMap.addMarker(new MarkerOptions()
@@ -508,6 +507,14 @@ public class GPS_Fragment extends GMap_Fragment {
 		for (int i = 0; i < directionPoint.size(); i++) {
 			rectLine.add(directionPoint.get(i));
 		}
+
+		latlngBuilder = new LatLngBounds.Builder();
+		latlngBuilder.include(coordinate);
+		latlngBuilder.include(point);
+		bounds = latlngBuilder.build();
+
+		cu = CameraUpdateFactory.newLatLngBounds(bounds, 500);
+		mMap.animateCamera(cu);
 
 		mMap.setOnMarkerClickListener(new OnMarkerClickListener() {
 			@Override
@@ -542,6 +549,15 @@ public class GPS_Fragment extends GMap_Fragment {
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
 										int whichButton) {
+									
+									latlngBuilder = new LatLngBounds.Builder();
+									latlngBuilder.include(coordinate);
+									latlngBuilder.include(point);
+									LatLngBounds bounds = latlngBuilder.build();
+
+									cu = CameraUpdateFactory.newLatLngBounds(bounds, 500);
+									mMap.animateCamera(cu);
+									
 									dialog.cancel();
 								}
 							});
@@ -561,15 +577,26 @@ public class GPS_Fragment extends GMap_Fragment {
 		pointTo = markDestination(search2);
 		GMapV2Direction md = new GMapV2Direction();
 		try {
-			Document doc = md.getDocument(pointFrom, pointTo, GMapV2Direction.MODE_DRIVING);
+			Document doc = md.getDocument(pointFrom, pointTo,
+					GMapV2Direction.MODE_DRIVING);
 			ArrayList<LatLng> directionPoint = md.getDirection(doc);
-			PolylineOptions rectLine = new PolylineOptions().width(14).color(Color.BLUE);
+			PolylineOptions rectLine = new PolylineOptions().width(14).color(
+					Color.BLUE);
 			for (int i = 0; i < directionPoint.size(); i++) {
 				rectLine.add(directionPoint.get(i));
 			}
 
 			@SuppressWarnings("unused")
 			Polyline polylin = mMap.addPolyline(rectLine);
+			
+			latlngBuilder = new LatLngBounds.Builder();
+			latlngBuilder.include(pointFrom);
+			latlngBuilder.include(pointTo);
+			LatLngBounds bounds = latlngBuilder.build();
+
+			cu = CameraUpdateFactory.newLatLngBounds(bounds, 500);
+			mMap.animateCamera(cu);
+			
 		} catch (Exception e) {
 			Log.e("Search Place", "NOT FOUND LOCATION");
 		}
@@ -584,21 +611,21 @@ public class GPS_Fragment extends GMap_Fragment {
 			if (addresses.size() > 0) {
 				for (int i = 0; i < addresses.size(); i++) {
 					Address addr = (Address) addresses.get(i);
-					pointDes = new LatLng(addr.getLatitude(), addr.getLongitude());
+					pointDes = new LatLng(addr.getLatitude(),
+							addr.getLongitude());
 					lat1 = addr.getLatitude();
 					lng1 = addr.getLongitude();
 					String addrText = "";
 					for (int j = 0; j < addr.getMaxAddressLineIndex(); j++)
 						addrText += addr.getAddressLine(j) + "\n";
-					mMap.addMarker(new MarkerOptions()
-							.position(pointDes)
-							.title(addr.getAddressLine(0))
-							.snippet(addrText)
-							.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_destination))).showInfoWindow();
-					CameraPosition cameraPosition = new CameraPosition.Builder()
-							.target(pointDes).zoom(15).build();
-					mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(pointDes,15));
-					mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+					mMap.addMarker(
+							new MarkerOptions()
+									.position(pointDes)
+									.title(addr.getAddressLine(0))
+									.snippet(addrText)
+									.icon(BitmapDescriptorFactory
+											.fromResource(R.drawable.marker_destination)))
+							.showInfoWindow();
 				}
 			} else {
 				Toast.makeText(getActivity(), "Not Found Location",

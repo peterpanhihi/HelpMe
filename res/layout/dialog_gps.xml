@@ -28,76 +28,83 @@
         android:orientation="vertical" >
     </LinearLayout>
 
-    <LinearLayout
+    <ScrollView
+        android:id="@+id/scrollView1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:gravity="center" >
+        android:layout_height="wrap_content" >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:gravity="center_vertical"
-            android:orientation="vertical" >
+            android:gravity="center" >
 
             <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="5"
-                android:orientation="horizontal" >
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical" >
 
-                <teeza.application.helpme.custom_view.CustomText
-                    android:id="@+id/customText_detail"
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:fontFamily="DBHelvethaicaX.ttf"
-                    android:layout_weight="2"
-                    android:text="ที่ตั้ง: "
-                    android:textColor="#999999"
-                    android:textSize="20sp" />
+                    android:orientation="horizontal"
+                    android:weightSum="5" >
 
-                <teeza.application.helpme.custom_view.CustomText
-                    android:id="@+id/gpsDialog_detail"
-                    android:layout_width="0dp"
+                    <teeza.application.helpme.custom_view.CustomText
+                        android:id="@+id/customText_detail"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_weight="2"
+                        android:fontFamily="DBHelvethaicaX.ttf"
+                        android:text="ที่ตั้ง: "
+                        android:textColor="#999999"
+                        android:textSize="20sp" />
+
+                    <teeza.application.helpme.custom_view.CustomText
+                        android:id="@+id/gpsDialog_detail"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_weight="3"
+                        android:fontFamily="DBHelvethaicaX.ttf"
+                        android:text="DETAIL"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout2"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:layout_weight="3"
-                    android:fontFamily="DBHelvethaicaX.ttf"
-                    android:text="DETAIL" 
-                    android:textSize="20sp"/>      
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="5" >
+
+                    <teeza.application.helpme.custom_view.CustomText
+                        android:id="@+id/customText_detail"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_weight="2"
+                        android:fontFamily="DBHelvethaicaX.ttf"
+                        android:text="โทรศัพท์: "
+                        android:textColor="#999999"
+                        android:textSize="20sp" />
+
+                    <teeza.application.helpme.custom_view.CustomText
+                        android:id="@+id/gpsDialog_phone"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_weight="3"
+                        android:fontFamily="DBHelvethaicaX.ttf"
+                        android:text="-"
+                        android:textSize="20sp" />
+                </LinearLayout>
             </LinearLayout>
-            
-            <LinearLayout
-                android:id="@+id/linearLayout2"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="5"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal" >
-
-                <teeza.application.helpme.custom_view.CustomText
-                    android:id="@+id/customText_detail"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:fontFamily="DBHelvethaicaX.ttf"
-                    android:layout_weight="2"
-                    android:text="โทรศัพท์: "
-                    android:textColor="#999999"
-                    android:textSize="20sp" />
-
-                <teeza.application.helpme.custom_view.CustomText
-                    android:id="@+id/gpsDialog_phone"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:layout_weight="3"
-                    android:fontFamily="DBHelvethaicaX.ttf"
-                    android:text="-" 
-                    android:textSize="20sp"/>      
-            </LinearLayout>            
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>

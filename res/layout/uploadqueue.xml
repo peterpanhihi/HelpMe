@@ -101,8 +101,8 @@
                     android:layout_marginLeft="10dp"
                     android:editable="false"
                     android:fontFamily="DBHelvethaicaX.ttf"
-                    android:hint="ชื่อเหตุการณ์"
                     android:paddingTop="5dp"
+                    android:text="ชื่อเหตุการณ์"
                     android:textCursorDrawable="@null"
                     android:textSize="24sp" />
 
@@ -143,7 +143,7 @@
                         android:layout_marginLeft="10dp"
                         android:editable="false"
                         android:fontFamily="DBHelvethaicaX.ttf"
-                        android:hint="เลขรับแจ้ง"
+                        android:text="เลขรับแจ้ง"
                         android:textCursorDrawable="@null"
                         android:textSize="24sp" />
 
@@ -182,7 +182,7 @@
                         android:layout_marginLeft="10dp"
                         android:editable="false"
                         android:fontFamily="DBHelvethaicaX.ttf"
-                        android:hint="เลขที่กรมธรรม์"
+                        android:text="เลขที่กรมธรรม์"
                         android:textCursorDrawable="@null"
                         android:textSize="24sp" />
 
@@ -221,7 +221,7 @@
                         android:layout_marginLeft="10dp"
                         android:editable="false"
                         android:fontFamily="DBHelvethaicaX.ttf"
-                        android:hint="ทะเบียนรถ"
+                        android:text="ทะเบียนรถ"
                         android:textCursorDrawable="@null"
                         android:textSize="24sp" />
 
@@ -259,7 +259,7 @@
                         android:layout_marginLeft="10dp"
                         android:editable="false"
                         android:fontFamily="DBHelvethaicaX.ttf"
-                        android:hint="ชื่อผู้เอาประกัน"
+                        android:text="ชื่อผู้เอาประกัน"
                         android:textCursorDrawable="@null"
                         android:textSize="24sp" />
 
@@ -298,7 +298,7 @@
                         android:layout_marginLeft="10dp"
                         android:editable="false"
                         android:fontFamily="DBHelvethaicaX.ttf"
-                        android:hint="วันและเวลาที่แจ้งเคลม"
+                        android:text="วันและเวลาที่แจ้งเคลม"
                         android:textCursorDrawable="@null"
                         android:textSize="24sp" />
 
@@ -335,7 +335,7 @@
                         android:layout_marginBottom="3dp"
                         android:layout_marginLeft="10dp"
                         android:fontFamily="DBHelvethaicaX.ttf"
-                        android:hint="วันและเวลาที่เกิดเหตุ"
+                        android:text="วันและเวลาที่เกิดเหตุ"
                         android:textCursorDrawable="@null"
                         android:textSize="24sp" />
 
@@ -387,23 +387,29 @@
                         android:layout_marginLeft="10dp"
                         android:editable="false"
                         android:fontFamily="DBHelvethaicaX.ttf"
-                        android:hint="สถานที่เกิดเหตุ"
+                        android:text="สถานที่เกิดเหตุ"
                         android:textCursorDrawable="@null"
                         android:textSize="24sp" />
 
-                    <teeza.application.helpme.custom_view.CustomEdittext
+                    <teeza.application.helpme.custom_view.CustomAutoComplete
                         android:id="@+id/location_action"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:background="@drawable/round"
+                        android:dropDownWidth="wrap_content"
                         android:ems="10"
                         android:fontFamily="DBHelvethaicaX.ttf"
+                        android:hint=" ค้นหา"
+                        android:imeOptions="actionSearch"
+                        android:inputType="textPersonName"
+                        android:padding="10dp"
                         android:paddingBottom="7dp"
                         android:paddingLeft="10dp"
                         android:paddingTop="7dp"
-                        android:singleLine="true"
+                        android:textColor="#000000"
+                        android:textCursorDrawable="@null"
                         android:textSize="24sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -427,7 +433,7 @@
                         android:layout_marginLeft="10dp"
                         android:editable="false"
                         android:fontFamily="DBHelvethaicaX.ttf"
-                        android:hint="รายละเอียดการเกิดเหตุ"
+                        android:text="รายละเอียดการเกิดเหตุ"
                         android:textCursorDrawable="@null"
                         android:textSize="24sp" />
 
@@ -441,7 +447,8 @@
                         android:ems="10"
                         android:fontFamily="DBHelvethaicaX.ttf"
                         android:gravity="top|center_vertical"
-                        android:nextFocusDown="@+id/address"
+                        android:inputType="textMultiLine"
+                        android:nextFocusDown="@+id/phone"
                         android:paddingBottom="7dp"
                         android:paddingLeft="10dp"
                         android:paddingTop="7dp"
@@ -469,7 +476,7 @@
                         android:layout_marginLeft="10dp"
                         android:editable="false"
                         android:fontFamily="DBHelvethaicaX.ttf"
-                        android:hint="โทรศัพท์ที่ติดต่อได้"
+                        android:text="โทรศัพท์ที่ติดต่อได้"
                         android:textCursorDrawable="@null"
                         android:textSize="24sp" />
 
@@ -511,7 +518,7 @@
                         android:layout_marginLeft="10dp"
                         android:editable="false"
                         android:fontFamily="DBHelvethaicaX.ttf"
-                        android:hint="สภาพรถ"
+                        android:text="สภาพรถ"
                         android:textCursorDrawable="@null"
                         android:textSize="24sp" />
 
@@ -523,8 +530,7 @@
                         android:layout_marginRight="10dp"
                         android:background="@drawable/btn_dropdown_border"
                         android:entries="@array/image_size_arrays"
-                        android:fontFamily="DBHelvethaicaX.ttf"
-                        android:textColor="#777777" />
+                        android:fontFamily="DBHelvethaicaX.ttf" />
                 </LinearLayout>
             </LinearLayout>
             <!-- loss -->
@@ -547,7 +553,7 @@
                         android:layout_marginLeft="10dp"
                         android:editable="false"
                         android:fontFamily="DBHelvethaicaX.ttf"
-                        android:hint="ระบุความเสียหาย เช่น ไฟหน้าแตก"
+                        android:text="ระบุความเสียหาย เช่น ไฟหน้าแตก"
                         android:textCursorDrawable="@null"
                         android:textSize="24sp" />
 
@@ -566,6 +572,7 @@
                         android:paddingLeft="10dp"
                         android:paddingTop="7dp"
                         android:singleLine="true"
+                        android:textColor="#000000"
                         android:textSize="24sp" />
                 </LinearLayout>
             </LinearLayout>

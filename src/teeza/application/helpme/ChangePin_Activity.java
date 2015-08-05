@@ -46,38 +46,52 @@ public class ChangePin_Activity extends Activity {
 		txtError = (TextView) findViewById(R.id.error);
 		txtError.setVisibility(View.INVISIBLE);
 
+		etConfpin.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				submitPin();
+			}
+		});
+		
 		submit.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				oldpin = etOldpin.getText().toString();
-				newpin = etNewpin.getText().toString();
-				confpin = etConfpin.getText().toString();
-
-				if (checkPin()) {
-					mManager.changepass(oldpin, newpin);
-					mManager.setPin(newpin);
-					txtError.setVisibility(View.INVISIBLE);
-					etOldpin.setText("");
-					etNewpin.setText("");
-					etConfpin.setText("");
-					Toast.makeText(getApplicationContext(),"เปลี่ยนรหัสผ่านเรียบร้อยแล้ว", Toast.LENGTH_LONG).show();
-					Intent intent = new Intent(getApplicationContext(),Main_Activity.class);
-					intent.putExtra("selectItem", 6);
-					intent.putExtra("isInPage", true);
-					startActivity(intent);
-				}
+				submitPin();
 			}
 		});
-		
+
 		cancel.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
 				isCancel = true;
 				finish();
 			}
 		});
+	}
+
+	public void submitPin() {
+		oldpin = etOldpin.getText().toString();
+		newpin = etNewpin.getText().toString();
+		confpin = etConfpin.getText().toString();
+
+		if (checkPin()) {
+			mManager.changepass(oldpin, newpin);
+			mManager.setPin(newpin);
+			txtError.setVisibility(View.INVISIBLE);
+			etOldpin.setText("");
+			etNewpin.setText("");
+			etConfpin.setText("");
+			Toast.makeText(getApplicationContext(),
+					"เปลี่ยนรหัสผ่านเรียบร้อยแล้ว", Toast.LENGTH_LONG).show();
+			Intent intent = new Intent(getApplicationContext(),
+					Main_Activity.class);
+			intent.putExtra("selectItem", 6);
+			intent.putExtra("isInPage", true);
+			startActivity(intent);
+		}
 	}
 
 	public boolean checkPin() {
@@ -127,7 +141,7 @@ public class ChangePin_Activity extends Activity {
 			appStatus.onPause();
 		}
 	}
-	
+
 	@Override
 	public void onBackPressed() {
 		isCancel = true;

@@ -20,7 +20,7 @@
             android:fontFamily="DBHelvethaicaX.ttf"
             android:gravity="center_vertical"
             android:text="Large Text"
-            android:textColor="#999999"
+            android:textColor="#000000"
             android:textSize="24sp" />
 
     </LinearLayout>

@@ -6,7 +6,7 @@
     android:background="#ffffff"
     android:focusable="false"
     android:focusableInTouchMode="false"
-    android:orientation="vertical">
+    android:orientation="vertical" >
 
     <RelativeLayout
         android:id="@+id/LinearLayout01"
@@ -17,25 +17,25 @@
         android:background="#e30053"
         android:orientation="horizontal" >
 
-        <ImageView
+        <!--
+             <ImageView
             android:id="@+id/gallery"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
-            android:src="@drawable/header_galleries" />
+            android:src="@drawable/header_galleries" />
+        -->
 
         <ImageView
             android:id="@+id/capturepic"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="11dp"
-            android:layout_toLeftOf="@+id/gallery"
+            android:layout_margin="10dp"
             android:src="@drawable/header_add" />
-
-
 
         <ImageView
             android:id="@+id/picplace"
@@ -47,61 +47,57 @@
             android:src="@drawable/menu_1_helpme" />
 
         <teeza.application.helpme.custom_view.CustomText
-            android:fontFamily="DBHelvethaicaX.ttf"
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="13dp"
             android:layout_toRightOf="@+id/picplace"
+            android:fontFamily="DBHelvethaicaX.ttf"
             android:text="HelpMe!"
             android:textColor="#ffffff"
             android:textSize="28sp" />
-
     </RelativeLayout>
 
-
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp">
+        android:layout_margin="5dp"
+        android:orientation="horizontal" >
 
         <teeza.application.helpme.custom_view.CustomText
-            android:fontFamily="DBHelvethaicaX.ttf"
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/LinearLayout01"
-            android:text="To : "
             android:layout_marginRight="5dp"
+            android:fontFamily="DBHelvethaicaX.ttf"
+            android:text="To : "
             android:textSize="24sp" />
 
         <teeza.application.helpme.custom_view.CustomText
-            android:fontFamily="DBHelvethaicaX.ttf"
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/textView1"
             android:layout_alignBottom="@+id/textView1"
             android:layout_toRightOf="@+id/textView1"
+            android:fontFamily="DBHelvethaicaX.ttf"
             android:text="บริษัทประกันภัย"
-            android:textSize="24sp"
-            android:textColor="#e30053" />
-
+            android:textColor="#e30053"
+            android:textSize="24sp" />
     </LinearLayout>
-
 
     <GridView
         android:id="@+id/UploadList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="70"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView1"
-        android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_weight="70"
         android:columnWidth="90dp"
         android:gravity="center"
         android:horizontalSpacing="10dp"
@@ -111,22 +107,23 @@
     </GridView>
 
     <teeza.application.helpme.custom_view.CustomEdittext
-        android:fontFamily="DBHelvethaicaX.ttf"
         android:id="@+id/autoCompleteTextView1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="20"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:padding="5dp"
+        android:layout_weight="20"
         android:background="#ededed"
         android:ems="10"
+        android:fontFamily="DBHelvethaicaX.ttf"
+        android:gravity="top|center_vertical"
         android:hint="กรุณาระบุบรายละเอียดคาวมเสียหายที่เกิดขึ้น"
-        android:textCursorDrawable="@null"
+        android:inputType="textMultiLine"
+        android:padding="5dp"
         android:textColor="#000000"
         android:textColorHint="#717171"
+        android:textCursorDrawable="@null"
         android:textSize="24sp" >
-
         <requestFocus />
     </teeza.application.helpme.custom_view.CustomEdittext>
 
@@ -134,8 +131,8 @@
         android:id="@+id/UploadQueueFooter"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="10"
         android:layout_alignParentBottom="true"
+        android:layout_weight="10"
         android:orientation="horizontal"
         android:weightSum="3" >
 
@@ -159,6 +156,5 @@
             android:text="ยกเลิก"
             android:textColor="#ffffff" />
     </LinearLayout>
-
 
 </LinearLayout>

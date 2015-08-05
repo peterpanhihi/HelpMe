@@ -111,16 +111,16 @@ public class UploadQueueHelpme_Activity extends Activity {
 
 		capture();
 
-		ImageView selectpic = (ImageView) findViewById(R.id.gallery);
-		selectpic.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent select = new Intent(getApplicationContext(),
-						Gallery_Activity.class);
-				appStatus.setIsInPage(true);
-				startActivityForResult(select, 1);
-			}
-		});
+//		ImageView selectpic = (ImageView) findViewById(R.id.gallery);
+//		selectpic.setOnClickListener(new OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				Intent select = new Intent(getApplicationContext(),
+//						Gallery_Activity.class);
+//				appStatus.setIsInPage(true);
+//				startActivityForResult(select, 1);
+//			}
+//		});
 
 		ImageView capturepic = (ImageView) findViewById(R.id.capturepic);
 		capturepic.setOnClickListener(new OnClickListener() {
@@ -246,7 +246,8 @@ public class UploadQueueHelpme_Activity extends Activity {
 					R.drawable.custom_progressbar));
 			progressDialog.setMax(queueAdapter.getUploadCount());
 			progressDialog.setTitle("Uploading");
-			progressDialog.setCancelable(true);
+			progressDialog.setCancelable(false);
+			progressDialog.setCanceledOnTouchOutside(false);
 			progressDialog.setMessage("Please wait...");
 			progressDialog.setOnCancelListener(new OnCancelListener() {
 
