@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -104,6 +105,7 @@ public class CheckInsurance_Fragment extends Fragment{
 				JSONObject c2 = data.getJSONObject(i);
 		        Car car = new Car();
 		        car.setCarid(c2.getString("car_id"));
+		        Log.i("car_id", c2.getString("car_id"));
 		        car.setCartype(c2.getString("cartype_id"));
 		        car.setcarband(c2.getString("car_brand"));
 		        car.setcarseries(c2.getString("car_name"));

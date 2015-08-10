@@ -207,6 +207,10 @@ public class Login_Activity extends Activity {
 
 	}
 
+	@Override
+	public void onBackPressed() {
+	}
+
 	public void showError() {
 		this.runOnUiThread(new Runnable() {
 			@Override

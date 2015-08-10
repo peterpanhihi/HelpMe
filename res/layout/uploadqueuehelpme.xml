@@ -117,7 +117,7 @@
         android:ems="10"
         android:fontFamily="DBHelvethaicaX.ttf"
         android:gravity="top|center_vertical"
-        android:hint="กรุณาระบุบรายละเอียดคาวมเสียหายที่เกิดขึ้น"
+        android:hint="กรุณาระบุรายละเอียดความเสียหายที่เกิดขึ้น"
         android:inputType="textMultiLine"
         android:padding="5dp"
         android:textColor="#000000"

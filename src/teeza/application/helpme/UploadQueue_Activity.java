@@ -9,8 +9,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
-import java.util.Locale;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
@@ -24,8 +22,6 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.PlaceBuffer;
 import com.google.android.gms.location.places.Places;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
 import com.squareup.okhttp.FormEncodingBuilder;
 import com.squareup.okhttp.RequestBody;
 
@@ -55,31 +51,19 @@ import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.location.Address;
-import android.location.Geocoder;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.os.Vibrator;
 import android.os.AsyncTask.Status;
-import android.provider.Settings;
 import android.util.Log;
-import android.view.ContextThemeWrapper;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnFocusChangeListener;
-import android.view.inputmethod.EditorInfo;
-import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -235,7 +219,7 @@ public class UploadQueue_Activity extends GMap_Activity implements
 		if (queueAdapter.getCount() == 0) {
 			appStatus.setIsInPage(true);
 			Intent select = new Intent(getApplicationContext(),
-					EClaim_Activity.class);
+					EClaim_Photo_Activity.class);
 			startActivityForResult(select, 1);
 		}
 
@@ -245,7 +229,7 @@ public class UploadQueue_Activity extends GMap_Activity implements
 			@Override
 			public void onClick(View v) {
 				Intent select = new Intent(getApplicationContext(),
-						EClaim_Activity.class);
+						EClaim_Photo_Activity.class);
 				startActivityForResult(select, 1);
 			}
 		});
@@ -658,6 +642,7 @@ public class UploadQueue_Activity extends GMap_Activity implements
 									Intent intent = new Intent(activity,
 											Main_Activity.class);
 									intent.putExtra("isInPage", true);
+									intent.putExtra("selectItem", 8);
 									startActivity(intent);
 								}
 							});

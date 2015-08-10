@@ -8,6 +8,7 @@ import teeza.application.helpme.view.fragment.Callcenter_Fragment;
 import teeza.application.helpme.view.fragment.CheckInsurance_Fragment;
 import teeza.application.helpme.view.fragment.EClaimCheckPolicy_Fragment;
 import teeza.application.helpme.view.fragment.EClaimDialog_Fragment;
+import teeza.application.helpme.view.fragment.EClaim_Fragment;
 import teeza.application.helpme.view.fragment.GPS_Fragment;
 import teeza.application.helpme.view.fragment.Main_Fragment;
 import teeza.application.helpme.view.fragment.SearchPlace_Fragment;
@@ -74,17 +75,17 @@ public class Main_Activity extends SherlockFragmentActivity {
 		appStatus = ApplicationStatus.getInstance();
 		appStatus.setIsInApp(true);
 		setContentView(R.layout.activity_menu);
-		
+
 		Intent intent = getIntent();
 		selectedNum = intent.getIntExtra("selectItem", 0);
 		appStatus.setIsInPage(intent.getBooleanExtra("isInPage", false));
 		appStatus.checkLocation(this);
-		
-		Log.d("Check onCreate MainActivity ",
-				"isFillPin: " + appStatus.isFillPin() + " isInApp: "
-						+ appStatus.isInApp() + " isInPage: "
-						+ appStatus.isInPage() + " isCall: "
-						+ appStatus.isCall());
+
+		// Log.d("Check onCreate MainActivity ",
+		// "isFillPin: " + appStatus.isFillPin() + " isInApp: "
+		// + appStatus.isInApp() + " isInPage: "
+		// + appStatus.isInPage() + " isCall: "
+		// + appStatus.isCall());
 
 		title = new String[] { "Helpme", "เครมย้อนหลัง", "การเดินทาง การจราจร",
 				"สถานที่เกี่ยวข้อง", "เช็คเบี้ยประกัน", "เบอร์โทรฉุกเฉิน",
@@ -118,36 +119,41 @@ public class Main_Activity extends SherlockFragmentActivity {
 		getSupportActionBar().setHomeButtonEnabled(true);
 
 		if (savedInstanceState == null) {
+			selectItem(selectedNum);
+			if(selectedNum == 8) {
+				selectedNum = 1;
+			}
 			mytitle.setText(title[selectedNum]);
 			myicon.setImageResource(icon[selectedNum]);
 			getSupportActionBar().setIcon(R.drawable.icon_mainmenu);
-			selectItem(selectedNum);
 		}
-		
+
 		aController = (Controller) getApplicationContext();
-		
+
 		// Check if Internet Connection present
 		if (!aController.isConnectingToInternet()) {
-			
+
 			// Internet Connection is not present
 			aController.showAlertDialog(Main_Activity.this,
 					"Internet Connection Error",
 					"Please connect to working Internet connection", false);
-			
+
 			// stop executing code by return
 			return;
 		}
 
 		// Check if GCM configuration is set
-		if (Config.YOUR_SERVER_URL == null || Config.GOOGLE_SENDER_ID == null || Config.YOUR_SERVER_URL.length() == 0
+		if (Config.YOUR_SERVER_URL == null || Config.GOOGLE_SENDER_ID == null
+				|| Config.YOUR_SERVER_URL.length() == 0
 				|| Config.GOOGLE_SENDER_ID.length() == 0) {
-			
+
 			// GCM sernder id / server url is missing
-			aController.showAlertDialog(Main_Activity.this, "Configuration Error!",
+			aController.showAlertDialog(Main_Activity.this,
+					"Configuration Error!",
 					"Please set your Server URL and GCM Sender ID", false);
-			
+
 			// stop executing code by return
-			 return;
+			return;
 		}
 
 		// Check if Internet present
@@ -263,7 +269,8 @@ public class Main_Activity extends SherlockFragmentActivity {
 				mDrawerLayout.openDrawer(mDrawerList);
 			}
 		} else if (item.getItemId() == R.id.add_item) {
-			EClaimCheckPolicy_Fragment edf = new EClaimCheckPolicy_Fragment(idcus);
+			EClaimCheckPolicy_Fragment edf = new EClaimCheckPolicy_Fragment(
+					idcus);
 			edf.show(getSupportFragmentManager(), "Dialog");
 			appStatus.setIsInPage(true);
 		} else if (item.getItemId() == R.id.oil_item) {
@@ -319,15 +326,13 @@ public class Main_Activity extends SherlockFragmentActivity {
 
 			}
 			setOldposition(position);
-
 			appStatus.setIsInApp(true);
-			// item_menu.setVisible(false);
-
 			break;
 		case 1:
 			EClaimDialog_Fragment edf = new EClaimDialog_Fragment(this,
 					position, idcus);
 			edf.show(getSupportFragmentManager(), "Dialog");
+
 			appStatus.setIsInApp(true);
 			break;
 		case 2:
@@ -400,6 +405,15 @@ public class Main_Activity extends SherlockFragmentActivity {
 				startActivity(logout);
 			}
 			setOldposition(position);
+			break;
+		case 8:	
+			EClaim_Fragment claim = new EClaim_Fragment();
+			claim.getFragmentManager();
+			FragmentTransaction ft = getSupportFragmentManager()
+					.beginTransaction();
+			ft.replace(R.id.frame_container, claim);
+			ft.commit();
+			setOldposition(1);
 			break;
 		}
 
@@ -498,19 +512,17 @@ public class Main_Activity extends SherlockFragmentActivity {
 		public void onReceive(Context context, Intent intent) {
 			String newMessage = "";
 			try {
-				newMessage = intent.getExtras().getString(
-					Config.EXTRA_MESSAGE);
-			} catch(RuntimeException e){
+				newMessage = intent.getExtras().getString(Config.EXTRA_MESSAGE);
+			} catch (RuntimeException e) {
 				e.printStackTrace();
 			}
-			
 
 			// Waking up mobile if it is sleeping
 			aController.acquireWakeLock(getApplicationContext());
 
-			if(newMessage != null)
+			if (newMessage != null)
 				Toast.makeText(getApplicationContext(),
-					"Got Message: " + newMessage, Toast.LENGTH_LONG).show();
+						"Got Message: " + newMessage, Toast.LENGTH_LONG).show();
 
 			// Releasing wake lock
 			aController.releaseWakeLock();

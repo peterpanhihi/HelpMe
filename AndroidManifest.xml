@@ -117,7 +117,7 @@
         </activity>
         
         <activity
-            android:name="teeza.application.helpme.EClaim_Activity"
+            android:name="teeza.application.helpme.EClaim_Photo_Activity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
         </activity>
@@ -197,7 +197,6 @@
             android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
         </activity>
 
-        
     </application>
 
 </manifest>
