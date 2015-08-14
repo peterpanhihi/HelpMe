@@ -46,6 +46,10 @@ public class Main_Activity extends SherlockFragmentActivity {
 	// Asyntask
 	AsyncTask<Void, Void, Void> mRegisterTask;
 	public static String idcus;
+	public static boolean isAlertAdd;
+
+	public TextView mytitle;
+	public ImageView myicon;
 
 	// Declare Variables
 	private DrawerLayout mDrawerLayout;
@@ -57,8 +61,6 @@ public class Main_Activity extends SherlockFragmentActivity {
 	// private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
 	private int oldposition = 5;
-	private TextView mytitle;
-	private ImageView myicon;
 	private ProgressDialog ringProgressDialog;
 	private StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
 			.permitAll().build();
@@ -120,11 +122,13 @@ public class Main_Activity extends SherlockFragmentActivity {
 
 		if (savedInstanceState == null) {
 			selectItem(selectedNum);
-			if(selectedNum == 8) {
-				selectedNum = 1;
+			if (selectedNum == 8) {
+				mytitle.setText("ประวัติการเครม");
+				myicon.setImageResource(icon[1]);
+			} else {
+				mytitle.setText(title[selectedNum]);
+				myicon.setImageResource(icon[selectedNum]);
 			}
-			mytitle.setText(title[selectedNum]);
-			myicon.setImageResource(icon[selectedNum]);
 			getSupportActionBar().setIcon(R.drawable.icon_mainmenu);
 		}
 
@@ -269,9 +273,13 @@ public class Main_Activity extends SherlockFragmentActivity {
 				mDrawerLayout.openDrawer(mDrawerList);
 			}
 		} else if (item.getItemId() == R.id.add_item) {
-			EClaimCheckPolicy_Fragment edf = new EClaimCheckPolicy_Fragment(
-					idcus);
-			edf.show(getSupportFragmentManager(), "Dialog");
+			if (!isAlertAdd) {
+				EClaimCheckPolicy_Fragment edf = new EClaimCheckPolicy_Fragment(
+						idcus);
+				edf.show(getSupportFragmentManager(), "Dialog");
+				isAlertAdd = true;
+			}
+
 			appStatus.setIsInPage(true);
 		} else if (item.getItemId() == R.id.oil_item) {
 			Intent Priceoil = new Intent(getApplicationContext(),
@@ -308,8 +316,23 @@ public class Main_Activity extends SherlockFragmentActivity {
 						}
 					}
 				}).start();
+				
+				setUpColorProgressDialog();
 			}
 		}
+	}
+	
+	public void setUpColorProgressDialog() {
+		int dividerId = ringProgressDialog.getContext().getResources()
+				.getIdentifier("android:id/titleDivider", null, null);
+		View divider = ringProgressDialog.findViewById(dividerId);
+		divider.setBackgroundColor(getResources()
+				.getColor(R.color.default_pink));
+
+		int textViewId = ringProgressDialog.getContext().getResources()
+				.getIdentifier("android:id/alertTitle", null, null);
+		TextView tv = (TextView) ringProgressDialog.findViewById(textViewId);
+		tv.setTextColor(getResources().getColor(R.color.default_pink));
 	}
 
 	private void selectItem(final int position) {
@@ -406,7 +429,7 @@ public class Main_Activity extends SherlockFragmentActivity {
 			}
 			setOldposition(position);
 			break;
-		case 8:	
+		case 8:
 			EClaim_Fragment claim = new EClaim_Fragment();
 			claim.getFragmentManager();
 			FragmentTransaction ft = getSupportFragmentManager()

@@ -52,8 +52,8 @@ public class ShowDetailEClaim_Activity extends Activity {
 	private String Link = Login_Activity.nameHost + "test/test/pdf.php";
 	private String ec_id, PDF;
 	private TextView detail, date, price, status, subject, carcity, carid;
-	private TextView num_policy, name, date_event, location_event, address,
-			status_car, loss, location_check;
+	private TextView num_policy, name, date_event, location_event, status_car,
+			loss;
 	private Button back;
 	private LinearLayout download, money;
 	private DecimalFormat myFormatter = new DecimalFormat("###,###,###");
@@ -83,10 +83,8 @@ public class ShowDetailEClaim_Activity extends Activity {
 		name = (TextView) findViewById(R.id.name);
 		date_event = (TextView) findViewById(R.id.date_event);
 		location_event = (TextView) findViewById(R.id.location_event);
-		address = (TextView) findViewById(R.id.address);
 		status_car = (TextView) findViewById(R.id.status_car);
 		loss = (TextView) findViewById(R.id.loss);
-		location_check = (TextView) findViewById(R.id.location_check);
 
 		subject = (TextView) findViewById(R.id.subjectshow);
 		detail = (TextView) findViewById(R.id.detailshow);
@@ -131,8 +129,7 @@ public class ShowDetailEClaim_Activity extends Activity {
 
 	private void Searchdata() {
 		RequestBody formBody = new FormEncodingBuilder()
-			.add("eclaim_id", ec_id)
-			.build();
+				.add("eclaim_id", ec_id).build();
 		try {
 			JSONArray data = new JSONArray(okHttp.POST(url2, formBody));
 			JSONObject c = data.getJSONObject(0);
@@ -145,10 +142,8 @@ public class ShowDetailEClaim_Activity extends Activity {
 			name.setText(c.getString("eclaim_name"));
 			date_event.setText(c.getString("eclaim_date_event"));
 			location_event.setText(c.getString("eclaim_location_event"));
-			address.setText(c.getString("eclaim_address"));
 			status_car.setText(c.getString("eclaim_status_car"));
 			loss.setText(c.getString("eclaim_loss"));
-			location_check.setText(c.getString("eclaim_location_check"));
 
 			String pricedeci = myFormatter.format(c.getInt("eclaim_price"));
 			price.setText(pricedeci);
@@ -172,8 +167,7 @@ public class ShowDetailEClaim_Activity extends Activity {
 
 	public void Searchpic() {
 		RequestBody formBody = new FormEncodingBuilder()
-		.add("eclaim_id", ec_id)
-		.build();
+				.add("eclaim_id", ec_id).build();
 		MyArrList.clear();
 		try {
 			JSONArray data = new JSONArray(okHttp.POST(url, formBody));
@@ -321,10 +315,6 @@ public class ShowDetailEClaim_Activity extends Activity {
 		if (requestCode == 1) {
 			if (resultCode == this.RESULT_OK) {
 				appStatus.onResume();
-			}
-
-			if (resultCode == this.RESULT_CANCELED) {
-				// Write your code if there's no result
 			}
 		}
 	}

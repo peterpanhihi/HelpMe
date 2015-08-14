@@ -9,6 +9,7 @@ import com.squareup.okhttp.FormEncodingBuilder;
 import com.squareup.okhttp.RequestBody;
 
 import teeza.application.helpme.Login_Activity;
+import teeza.application.helpme.Main_Activity;
 import teeza.application.helpme.R;
 import teeza.application.helpme.UploadQueue_Activity;
 import teeza.application.helpme.http.OKHttp;
@@ -88,12 +89,14 @@ public class EClaimCheckPolicy_Fragment extends DialogFragment {
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) {
 						dialog.cancel();
+						Main_Activity.isAlertAdd = false;
 					}
 				});
 		builder.setNegativeButton("ตกลง",
 				new DialogInterface.OnClickListener() {
 					public void onClick(final DialogInterface dialog,
 							int whichButton) {
+						Main_Activity.isAlertAdd = false;
 						Intent upload = new Intent(getActivity(),
 								UploadQueue_Activity.class);
 						upload.putExtra("car_policy", et_policy.getText().toString());

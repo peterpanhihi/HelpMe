@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:fontFamily="DBHelvethaicaX.ttf"
-        android:text="Type Your Description : "
+        android:text="รายละเอียดรูปภาพ"
         android:textColor="#e30053"
         android:textSize="30sp" />
 

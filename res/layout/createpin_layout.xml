@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:fontFamily="DBHelvethaicaX.ttf"
-        android:text="ตั้งค่า PIN"
+        android:text="ตั้งค่ารหัส PIN"
         android:textColor="#ffffff"
         android:textSize="28sp" />
 
@@ -50,7 +50,7 @@
             android:background="#00ffffff"
             android:ems="10"
             android:fontFamily="DBHelvethaicaX.ttf"
-            android:hint="PIN code"
+            android:hint="รหัส PIN"
             android:inputType="textPassword|number"
             android:maxLength="4"
             android:password="true"
@@ -100,7 +100,7 @@
             android:background="#00ffffff"
             android:ems="10"
             android:fontFamily="DBHelvethaicaX.ttf"
-            android:hint="confirm PIN code"
+            android:hint="ยืนยันรหัส PIN"
             android:inputType="textPassword|number"
             android:maxLength="4"
             android:password="true"
@@ -134,7 +134,7 @@
             android:layout_centerHorizontal="true"
             android:fontFamily="DBHelvethaicaX.ttf"
             android:gravity="center"
-            android:text="OK"
+            android:text="ตกลง"
             android:textColor="#e30053"
             android:textSize="28sp" />
     </RelativeLayout>

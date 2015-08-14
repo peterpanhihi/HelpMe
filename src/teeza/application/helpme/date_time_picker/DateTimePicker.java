@@ -18,6 +18,7 @@ import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.TabHost;
+import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabWidget;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -36,6 +37,7 @@ public class DateTimePicker extends DialogFragment {
 	private Context mContext;
 	private ButtonClickListener mButtonClickListener;
 	private OnDateTimeSetListener mOnDateTimeSetListener;
+	private TabHost mTabHost;
 	private Bundle mArgument;
 	private DatePicker mDatePicker;
 	private TimePicker mTimePicker;
@@ -82,8 +84,8 @@ public class DateTimePicker extends DialogFragment {
 		AlertDialog.Builder mBuilder = new AlertDialog.Builder(mContext);
 		// Setup the Dialog
 //		mBuilder.setTitle(Html.fromHtml("<font color='#e30053'>"+ mArgument.getCharSequence(KEY_DIALOG_TITLE)+"</font>"));
-		mBuilder.setNegativeButton(android.R.string.no, mButtonClickListener);
-		mBuilder.setPositiveButton(android.R.string.yes, mButtonClickListener);
+		mBuilder.setPositiveButton("ยกเลิก", mButtonClickListener);
+		mBuilder.setNegativeButton("ตกลง", mButtonClickListener);
 		// Create the Alert Dialog
 		AlertDialog mDialog = mBuilder.create();
 		// Set the View to the Dialog
@@ -103,24 +105,23 @@ public class DateTimePicker extends DialogFragment {
 		// Inflate the XML Layout using the inflater from the created Dialog
 		View mView = layoutInflater.inflate(R.layout.date_time_picker, null);
 		// Extract the TabHost
-		TabHost mTabHost = (TabHost) mView.findViewById(R.id.tab_host);
+		mTabHost = (TabHost) mView.findViewById(R.id.tab_host);
 		mTabHost.setup();
 		
 		// Create Date Tab and add to TabHost
 		TabHost.TabSpec mDateTab = mTabHost.newTabSpec(TAG_DATE);
-		mDateTab.setIndicator("DATE");
+		mDateTab.setIndicator("วันที่เกิดเหตุ");
 		mDateTab.setContent(R.id.date_content);
 		mTabHost.addTab(mDateTab);
 		// Create Time Tab and add to TabHost
 		TabHost.TabSpec mTimeTab = mTabHost.newTabSpec(TAG_TIME);
-		mTimeTab.setIndicator("TIME");
+		mTimeTab.setIndicator("เวลาที่เกิดเหตุ");
 		mTimeTab.setContent(R.id.time_content);
 		mTabHost.addTab(mTimeTab);
 		
 		TabWidget widget = mTabHost.getTabWidget();
 		for(int i = 0; i < widget.getChildCount(); i++) {
 		    View v = widget.getChildAt(i);
-
 		    // Look for the title view to ensure this is an indicator and not a divider.
 		    TextView tv = (TextView)v.findViewById(android.R.id.title);
 		    if(tv == null) {
@@ -140,7 +141,6 @@ public class DateTimePicker extends DialogFragment {
 		mTimePicker.setCurrentHour(mDateTime.getHourOfDay());
 		mTimePicker.setCurrentMinute(mDateTime.getMinuteOfHour());
 		prepareDateTimePicker();
-		// Return created view
 		return mView;
 	}
 	
@@ -163,22 +163,22 @@ public class DateTimePicker extends DialogFragment {
                 }
             }
             
-            Field timePickerFields[] = mTimePicker.getClass().getDeclaredFields();
-            for (Field field : timePickerFields) {
-                if ("mSpinners".equals(field.getName())) {
-                    field.setAccessible(true);
-                    Object spinnersObj = new Object();
-                    spinnersObj = field.get(mTimePicker);
-                    LinearLayout mSpinners = (LinearLayout) spinnersObj;
-                    hourPicker = (NumberPicker) mSpinners.getChildAt(0);
-                    minPicker = (NumberPicker) mSpinners.getChildAt(1);
-                    amPmPicker = (NumberPicker) mSpinners.getChildAt(2);
-                    setDividerColor(hourPicker);
-                    setDividerColor(minPicker);
-                    setDividerColor(amPmPicker);
-                    break;
-                }
-            }
+//            Field timePickerFields[] = mTimePicker.getClass().getDeclaredFields();
+//            for (Field field : timePickerFields) {
+//                if ("mSpinners".equals(field.getName())) {
+//                    field.setAccessible(true);
+//                    Object spinnersObj = new Object();
+//                    spinnersObj = field.get(mTimePicker);
+//                    LinearLayout mSpinners = (LinearLayout) spinnersObj;
+//                    hourPicker = (NumberPicker) mSpinners.getChildAt(0);
+//                    minPicker = (NumberPicker) mSpinners.getChildAt(1);
+//                    amPmPicker = (NumberPicker) mSpinners.getChildAt(2);
+//                    setDividerColor(hourPicker);
+//                    setDividerColor(minPicker);
+//                    setDividerColor(amPmPicker);
+//                    break;
+//                }
+//            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -223,7 +223,7 @@ public class DateTimePicker extends DialogFragment {
 		@Override
 		public void onClick(DialogInterface dialogInterface, int result) {
 			// Determine if the user selected Ok
-			if (DialogInterface.BUTTON_POSITIVE == result) {
+			if (DialogInterface.BUTTON_NEGATIVE == result) {
 				DateTime mDateTime = new DateTime(mDatePicker.getYear(),
 						mDatePicker.getMonth(), mDatePicker.getDayOfMonth(),
 						mTimePicker.getCurrentHour(),

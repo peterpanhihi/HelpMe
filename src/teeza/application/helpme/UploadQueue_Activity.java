@@ -112,6 +112,7 @@ public class UploadQueue_Activity extends GMap_Activity implements
 	private OKHttp okHttp;
 	private ApplicationStatus appStatus;
 	private SimpleDateTimePicker simpleDateTimePicker;
+	private Button startUploadBtn;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -234,7 +235,7 @@ public class UploadQueue_Activity extends GMap_Activity implements
 			}
 		});
 
-		final Button startUploadBtn = (Button) findViewById(R.id.StartUploadBtn);
+		startUploadBtn = (Button) findViewById(R.id.StartUploadBtn);
 		startUploadBtn.setOnClickListener(new OnClickListener() {
 
 			@SuppressWarnings("deprecation")
@@ -337,6 +338,11 @@ public class UploadQueue_Activity extends GMap_Activity implements
 							Toast.makeText(getApplication(),
 									"กรุณาใส่ระบุความเสียหาย",
 									Toast.LENGTH_SHORT).show();
+						} else if(queueAdapter.getCount() < 1){
+							startUploadBtn.setEnabled(true);
+							Toast.makeText(getApplication(),
+									"กรุณาใส่ภาพประกอบการเคลมย้อนหลัง",
+									Toast.LENGTH_SHORT).show();
 						} else {
 							send();
 							showDialog(PROGRESSDIALOG_ID);
@@ -397,8 +403,10 @@ public class UploadQueue_Activity extends GMap_Activity implements
 		builder.setNegativeButton("ใช่", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				Intent intent = new Intent(activity, Main_Activity.class);
+				Intent intent = new Intent(activity,
+						Main_Activity.class);
 				intent.putExtra("isInPage", true);
+				intent.putExtra("selectItem", 8);
 				startActivity(intent);
 			}
 		});
@@ -634,7 +642,7 @@ public class UploadQueue_Activity extends GMap_Activity implements
 					String message = "ข้อมูลถูกส่งเรียบร้อยแล้ว";
 					builder.setTitle("เคลมย้อนหลัง");
 					builder.setMessage(message);
-					builder.setNegativeButton("Ok",
+					builder.setNegativeButton("ตกลง",
 							new DialogInterface.OnClickListener() {
 								@Override
 								public void onClick(DialogInterface dialog,
@@ -649,10 +657,11 @@ public class UploadQueue_Activity extends GMap_Activity implements
 				} else {
 					builder.setMessage("Please select photo to upload")
 							.setCancelable(false)
-							.setPositiveButton("Ok",
+							.setPositiveButton("ตกลง",
 									new DialogInterface.OnClickListener() {
 										public void onClick(
 												DialogInterface dialog, int id) {
+											startUploadBtn.setEnabled(true);
 											dialog.cancel();
 										}
 									});

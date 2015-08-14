@@ -16,6 +16,7 @@ import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -56,7 +57,7 @@ public class Main_Fragment extends GMap_Fragment {
 	private ApplicationStatus appStatus;
 	private OKHttp okHttp;
 	private StrictMode.ThreadPolicy policy;
-	private boolean isClick;
+	private boolean isClick, isClaimer, cancelClaimer;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -66,7 +67,7 @@ public class Main_Fragment extends GMap_Fragment {
 		okHttp = new OKHttp();
 		appStatus = ApplicationStatus.getInstance();
 		policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-		
+
 		ceilLat = Double.MIN_VALUE;
 		ceilLng = Double.MIN_VALUE;
 		floorLat = Double.MAX_VALUE;
@@ -100,32 +101,47 @@ public class Main_Fragment extends GMap_Fragment {
 			appStatus.checkLocation(getActivity());
 			lat = mCurrentLocation.getLatitude();
 			lng = mCurrentLocation.getLongitude();
-			
-			Log.d("Location", "lat: "+ lat +" lng: "+ lng);
-			Log.d("Location Ceil","ceilLat: "+ceilLat+" floorLat"+ floorLat);
-			
-			if((lat > ceilLat || lat < floorLat) || (lng > ceilLng || lng < floorLng) || getClaim()) {
+
+			Log.d("Location", "lat: " + lat + " lng: " + lng);
+			Log.d("Location Ceil", "ceilLat: " + ceilLat + " floorLat"
+					+ floorLat);
+
+			if(cancelClaimer) {
+				mMap.clear();
+				mMarker = mMap.addMarker(new MarkerOptions().position(
+						new LatLng(lat, lng)).icon(
+						BitmapDescriptorFactory
+								.fromResource(R.drawable.marker_user)));
+				mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
+						coordinate, 16));
+				cancelClaimer = false;
+			} else if ((lat > ceilLat || lat < floorLat)
+					|| (lng > ceilLng || lng < floorLng) || getClaim()) {
 				coordinate = new LatLng(lat, lng);
-//				 Toast.makeText(getActivity(), "lat: "+lat +" lng: "+ lng, Toast.LENGTH_SHORT).show();
 				if (mMarker != null)
 					mMarker.remove();
+
 				if (mManager.getStatsend().equals("1")) {
 					MarkClaimer();
+					isClaimer = true;
 				} else {
+					mMap.clear();
 					mMarker = mMap.addMarker(new MarkerOptions().position(
 							new LatLng(lat, lng)).icon(
 							BitmapDescriptorFactory
 									.fromResource(R.drawable.marker_user)));
+					isClaimer = false;
 				}
 				if (!zoom) {
-					mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(coordinate, 16));
+					mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
+							coordinate, 16));
 					zoom = true;
 				}
 				mMap.setOnMarkerClickListener(new OnMarkerClickListener() {
 
 					@Override
 					public boolean onMarkerClick(Marker arg0) {
-						if(!isClick) {
+						if (!isClick) {
 							isClick = true;
 							if (mManager.getStatsend().equals("0"))
 								Helpme();
@@ -136,16 +152,16 @@ public class Main_Fragment extends GMap_Fragment {
 					}
 				});
 				updateRange();
-			} 
-			
+			}
+
 		}
 	}
-	
-	public void updateRange(){
-		ceilLat = Math.ceil(lat*10000)/10000;
-		ceilLng = Math.ceil(lng*10000)/10000;
-		floorLat = Math.floor(lat*10000)/10000;
-		floorLng = Math.floor(lng*10000)/10000;
+
+	public void updateRange() {
+		ceilLat = Math.ceil(lat * 10000) / 10000;
+		ceilLng = Math.ceil(lng * 10000) / 10000;
+		floorLat = Math.floor(lat * 10000) / 10000;
+		floorLng = Math.floor(lng * 10000) / 10000;
 	}
 
 	public void Helpme() {
@@ -166,7 +182,8 @@ public class Main_Fragment extends GMap_Fragment {
 		builder.setNegativeButton("ใช่", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int id) {
 				// push statement
-				Intent helpme = new Intent(getActivity(), UploadQueueHelpme_Activity.class);
+				Intent helpme = new Intent(getActivity(),
+						UploadQueueHelpme_Activity.class);
 				helpme.putExtra("lati", lat);
 				helpme.putExtra("long", lng);
 				helpme.putExtra("isInPage", "true");
@@ -204,7 +221,10 @@ public class Main_Fragment extends GMap_Fragment {
 				mMap.clear();
 				cancel[0] = false;
 				cancel[1] = false;
-				mMarker = mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_user)));
+				mMarker = mMap.addMarker(new MarkerOptions().position(
+						new LatLng(lat, lng)).icon(
+						BitmapDescriptorFactory
+								.fromResource(R.drawable.marker_user)));
 				updateUI();
 				mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
 						coordinate, 16));
@@ -248,55 +268,66 @@ public class Main_Fragment extends GMap_Fragment {
 			Document doc = md.getDocument((new LatLng(lat2, lng2)),
 					(new LatLng(lat, lng)), GMapV2Direction.MODE_DRIVING);
 			ArrayList<LatLng> directionPoint = md.getDirection(doc);
-			PolylineOptions rectLine = new PolylineOptions().width(8).color(Color.BLUE);
+			PolylineOptions rectLine = new PolylineOptions().width(8).color(
+					Color.BLUE);
 			for (int i = 0; i < directionPoint.size(); i++) {
 				rectLine.add(directionPoint.get(i));
 			}
 
 			@SuppressWarnings("unused")
 			Polyline polylin = this.mMap.addPolyline(rectLine);
-			
+
 			LatLngBounds.Builder builder = new LatLngBounds.Builder();
 			builder.include(mMarker.getPosition());
 			builder.include(mMarker2.getPosition());
 			LatLngBounds bounds = builder.build();
-			
-			CameraUpdate camera = CameraUpdateFactory.newLatLngBounds(bounds, 400);
+
+			CameraUpdate camera = CameraUpdateFactory.newLatLngBounds(bounds,
+					400);
 			mMap.animateCamera(camera);
 		} else {
 			mMarker = mMap.addMarker(new MarkerOptions().position(
 					new LatLng(lat, lng)).icon(
-					BitmapDescriptorFactory.fromResource(R.drawable.marker_user)));
+					BitmapDescriptorFactory
+							.fromResource(R.drawable.marker_user)));
 		}
 	}
 
 	protected boolean getClaim() {
 		cancel[0] = cancel[1];
-		
-		RequestBody formBody = new FormEncodingBuilder()
-			.add("customer_id", idcus)
-			.build();
-		
-		Log.i("CUSTOMER ID", idcus);
-		
+
+		RequestBody formBody = new FormEncodingBuilder().add("customer_id",
+				idcus).build();
+
 		StrictMode.setThreadPolicy(policy);
-	
+
 		try {
-			JSONObject json_data = new JSONObject(okHttp.POST(Login_Activity.nameHost + "routing.php", formBody));
+			String result = okHttp.POST(Login_Activity.nameHost + "routing.php", formBody);
+			Log.i("RESPONSE", result);
+			JSONObject json_data = new JSONObject(result);
 			lat2 = (json_data.getDouble("lati"));
 			lng2 = (json_data.getDouble("longi"));
 			claimer_id = (json_data.getDouble("claimer_id"));
 
-			Log.i("Claimer_id",claimer_id+"");
 			if (lat2 != 0 && lng2 != 0) {
 				Log.e("Claimer", "Get Loacation Success");
 				Log.e("Claimer", "Get Loacation Latitude = " + lat2
 						+ "Longtitude = " + lng2);
+				mManager.setStatsend("1");
 			} else {
 				Log.e("Claimer", "Get Loacation Fail");
 			}
 		} catch (Exception e) {
-			Log.e("Fail 3", e.toString());
+			Log.i("GET CLAIM", "NO CLAIMER");
+			if (isClaimer) {
+				isClaimer = false;
+				mManager.setStatsend("0");
+				cancelClaimer = true;
+				Log.i("JUST CANCEL", "1," + isClaimer);
+				updateUI();
+			} else {
+				cancelClaimer = false;
+			}
 			cancel[1] = false;
 			return false;
 		}
@@ -308,15 +339,13 @@ public class Main_Fragment extends GMap_Fragment {
 
 		String str_claimer_id = Double.toString(claimer_id);
 		RequestBody formBody = new FormEncodingBuilder()
-			.add("customer_id", idcus)
-			.add("Status", "fin")
-			.add("claimer_id", str_claimer_id)
-			.build();
+				.add("customer_id", idcus).add("Status", "fin")
+				.add("claimer_id", str_claimer_id).build();
 		StrictMode.setThreadPolicy(policy);
 
 		try {
-			JSONObject json_data = new JSONObject(okHttp.POST(Login_Activity.nameHost
-					+ "insert.php", formBody));
+			JSONObject json_data = new JSONObject(okHttp.POST(
+					Login_Activity.nameHost + "insert.php", formBody));
 			String code1 = (json_data.getString("code"));
 			if (code1.equals("1")) {
 				Log.e("Insert", "Inserted Successfully");

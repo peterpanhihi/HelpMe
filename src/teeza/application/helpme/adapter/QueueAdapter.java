@@ -177,7 +177,7 @@ public class QueueAdapter extends BaseAdapter {
 		// set dialog message
 		alertDialogBuilder
 				.setCancelable(false)
-				.setPositiveButton("OK",
+				.setNegativeButton("ตกลง",
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int id) {
 								String txt = userInput.getText()
@@ -191,7 +191,7 @@ public class QueueAdapter extends BaseAdapter {
 
 							}
 						})
-				.setNegativeButton("Cancel",
+				.setPositiveButton("ยกเลิก",
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog,
 									int id) {

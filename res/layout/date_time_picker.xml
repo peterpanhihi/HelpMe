@@ -10,6 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#e30053"
         android:orientation="vertical" >
 
         <teeza.application.helpme.custom_view.CustomText
@@ -19,8 +20,8 @@
             android:layout_marginLeft="13dp"
             android:layout_marginTop="10dp"
             android:fontFamily="DBHelvethaicaX.ttf"
-            android:text="Set Date and Time "
-            android:textColor="#e30053"
+            android:text="เลือกวันและเวลาเกิดเหตุ "
+            android:textColor="#FFFFFF"
             android:textSize="30sp" />
 
         <LinearLayout
@@ -47,7 +48,8 @@
             <TabWidget
                 android:id="@android:id/tabs"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:background = "@drawable/ab_stacked_solid_example" />
 
             <!-- Layout that will hold the content of the Tabs -->
 

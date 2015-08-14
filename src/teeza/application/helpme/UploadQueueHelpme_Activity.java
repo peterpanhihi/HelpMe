@@ -138,7 +138,12 @@ public class UploadQueueHelpme_Activity extends Activity {
 				startUploadBtn.setEnabled(false);
 				if (queueAdapter.getCount() == 0) {
 					Toast.makeText(getApplicationContext(),
-							"โปรดเลือกภาพเพื่อดำเนินการ", Toast.LENGTH_LONG)
+							"กรถณาเลือกภาพเพื่อดำเนินการ", Toast.LENGTH_LONG)
+							.show();
+					startUploadBtn.setEnabled(true);
+				} else if(detail.getText().toString().equals("")) {
+					Toast.makeText(getApplicationContext(),
+							"กรุณาใส่รายละเอียดความเสียหายที่เกิดขึ้น", Toast.LENGTH_LONG)
 							.show();
 					startUploadBtn.setEnabled(true);
 				} else {
@@ -361,7 +366,7 @@ public class UploadQueueHelpme_Activity extends Activity {
 
 					layout = inflater.inflate(R.layout.dialog_layout_upload,
 							null);
-					builder.setCancelable(false).setPositiveButton("Ok",
+					builder.setCancelable(false).setPositiveButton("ตกลง",
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
 										int id) {

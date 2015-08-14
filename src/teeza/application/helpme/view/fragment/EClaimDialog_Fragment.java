@@ -65,6 +65,7 @@ public class EClaimDialog_Fragment extends DialogFragment {
 			@Override
 			public void onClick(View v) {
 				main.setOldposition(position);
+				main.mytitle.setText("ประวัติการเครม");
 				EClaim_Fragment claim = new EClaim_Fragment();
 				claim.getFragmentManager();
 				FragmentTransaction ft = getActivity()

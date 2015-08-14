@@ -97,7 +97,7 @@ public class EClaim_Fragment extends Fragment {
 			JSONArray data = new JSONArray(okHttp.POST(url, formBody));
 			HashMap<String, Object> map;
 
-			for (int i = 0; i < data.length(); i++) {
+			for (int i = data.length()-1; i >=0; i--) {
 				JSONObject c = data.getJSONObject(i);
 				map = new HashMap<String, Object>();
 				
