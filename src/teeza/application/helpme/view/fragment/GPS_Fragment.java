@@ -190,14 +190,14 @@ public class GPS_Fragment extends GMap_Fragment {
 
 				builder.setView(layout);
 				builder.setCancelable(true);
-				builder.setPositiveButton("ไม่ต้องการ",
+				builder.setPositiveButton("ยกเลิก",
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog,
 									int whichButton) {
 								dialog.cancel();
 							}
 						});
-				builder.setNegativeButton("ต้องการ",
+				builder.setNegativeButton("เส้นทาง",
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog,
 									int whichButton) {
@@ -447,7 +447,7 @@ public class GPS_Fragment extends GMap_Fragment {
 												.getPosition().longitude);
 
 								builder.setCancelable(true);
-								builder.setPositiveButton("ไม่ต้องการ",
+								builder.setPositiveButton("ยกเลิก",
 										new DialogInterface.OnClickListener() {
 											public void onClick(
 													DialogInterface dialog,
@@ -455,7 +455,7 @@ public class GPS_Fragment extends GMap_Fragment {
 												dialog.cancel();
 											}
 										});
-								builder.setNegativeButton("ต้องการ",
+								builder.setNegativeButton("เส้นทาง",
 										new DialogInterface.OnClickListener() {
 											public void onClick(
 													DialogInterface dialog,
