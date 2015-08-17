@@ -187,7 +187,7 @@
                 android:layout_weight="2"
                 android:textColor="#ffffff"
                 android:background="#717171"
-                android:text="ยกเลิก" />
+                android:text="กลับ" />
            
             
         </LinearLayout>
